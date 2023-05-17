@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <!-- config fragment 사용, header안에 공통적으로 들어가는 것들이 모여있다. -->
+    <th:block th:replace="fragment/config :: configFragment('공지 페이지')"></th:block>
+</head>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Main -->
+    <div id="main">
+        <div class="inner">
+
+            <!-- Header(메인 상단 부분) ----------------------------------------------------------------------------------------------->
+            <header th:replace="fragment/header :: headerFragment"></header>
+
+
+
+            <!-- Banner -------------------------------------------------------------------------------------------------------------->
+            <section id="banner">
+                <div class="content">
+
+                    <h2>공지 페이지</h2>
+
+                    <!-- 검색 기능 구현 부분 ----------------------------------------------------------------------------------------------------------------------------->
+                    <div style="width: 90%; margin: 0px auto;"> <!-- searchState는nav.css에 위치 -->
+                        <form class="d-flex searchState2" role="search" style="float: right; display: flex">
+                            <!-- d-flex는 input,button이 한줄로 나오도록 하는 css -->
+                            <input class="form-control me-2" type="search" placeholder="회원이름" aria-label="Search"
+                                   id="searchText">
+                            <!-- 버튼안에 글자를 영어로 입력하면 가로로 잘 나오는데 한글로 입력하면 세로로 나옴 -> width를 지정해 주어야 세로로 나온다 -->
+                            <button class="btn btn-outline-success" type="button" style="width: 120px;" id="doSearch">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-search"
+                                     viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                                </svg>
+                                검색
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- 공지에 대한 페이지 ------------------------------------------------------------------------------------------------------------------>
+                    <div class="location">
+                        <table class="table tableSet">
+                            <thead>
+                            <tr>
+                                <th scope="col">번호</th>
+                                <th scope="col">제목</th>
+                                <th scope="col">등록일</th>
+                                <th scope="col">작성자</th>
+                                <th scope="col">권한</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>시험기간 안내</td>
+                                <td>2023-04-21</td>
+                                <td>홍길동1</td>
+                                <td>방장</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>팀프로젝트 안내</td>
+                                <td>2023-04-21</td>
+                                <td>홍길동2</td>
+                                <td>팀장</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>회식 안내</td>
+                                <td>2023-04-21</td>
+                                <td>홍길동1</td>
+                                <td>방장</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section ---------------------------------------------------------------------------------------------------------------->
+            <!--            <section>-->
+            <!--                <header class="major">-->
+            <!--                    <h2>공지</h2>-->
+            <!--                </header>-->
+            <!--                <div class="features">-->
+            <!--                    <article>-->
+            <!--                        <span class="icon fa-gem"></span>-->
+            <!--                        <div class="content">-->
+            <!--                            <h3>Portitor ullamcorper</h3>-->
+            <!--                            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam-->
+            <!--                                facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>-->
+            <!--                        </div>-->
+            <!--                    </article>-->
+            <!--                    <article>-->
+            <!--                        <span class="icon solid fa-paper-plane"></span>-->
+            <!--                        <div class="content">-->
+            <!--                            <h3>Sapien veroeros</h3>-->
+            <!--                            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam-->
+            <!--                                facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>-->
+            <!--                        </div>-->
+            <!--                    </article>-->
+            <!--                    <article>-->
+            <!--                        <span class="icon solid fa-rocket"></span>-->
+            <!--                        <div class="content">-->
+            <!--                            <h3>Quam lorem ipsum</h3>-->
+            <!--                            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam-->
+            <!--                                facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>-->
+            <!--                        </div>-->
+            <!--                    </article>-->
+            <!--                    <article>-->
+            <!--                        <span class="icon solid fa-signal"></span>-->
+            <!--                        <div class="content">-->
+            <!--                            <h3>Sed magna finibus</h3>-->
+            <!--                            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam-->
+            <!--                                facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>-->
+            <!--                        </div>-->
+            <!--                    </article>-->
+            <!--                </div>-->
+            <!--            </section>-->
+
+            <!-- Section ------------------------------------------------------------------------------------------------------------->
+            <!--								<section>-->
+            <!--									<header class="major">-->
+            <!--										<h2>Ipsum sed dolor</h2>-->
+            <!--									</header>-->
+            <!--									<div class="posts">-->
+            <!--										<article>-->
+            <!--											<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>-->
+            <!--											<h3>Interdum aenean</h3>-->
+            <!--											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>-->
+            <!--											<ul class="actions">-->
+            <!--												<li><a href="#" class="button">More</a></li>-->
+            <!--											</ul>-->
+            <!--										</article>-->
+            <!--										<article>-->
+            <!--											<a href="#" class="image"><img src="images/pic02.jpg" alt="" /></a>-->
+            <!--											<h3>Nulla amet dolore</h3>-->
+            <!--											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>-->
+            <!--											<ul class="actions">-->
+            <!--												<li><a href="#" class="button">More</a></li>-->
+            <!--											</ul>-->
+            <!--										</article>-->
+            <!--										<article>-->
+            <!--											<a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>-->
+            <!--											<h3>Tempus ullamcorper</h3>-->
+            <!--											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>-->
+            <!--											<ul class="actions">-->
+            <!--												<li><a href="#" class="button">More</a></li>-->
+            <!--											</ul>-->
+            <!--										</article>-->
+            <!--										<article>-->
+            <!--											<a href="#" class="image"><img src="images/pic04.jpg" alt="" /></a>-->
+            <!--											<h3>Sed etiam facilis</h3>-->
+            <!--											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>-->
+            <!--											<ul class="actions">-->
+            <!--												<li><a href="#" class="button">More</a></li>-->
+            <!--											</ul>-->
+            <!--										</article>-->
+            <!--										<article>-->
+            <!--											<a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>-->
+            <!--											<h3>Feugiat lorem aenean</h3>-->
+            <!--											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>-->
+            <!--											<ul class="actions">-->
+            <!--												<li><a href="#" class="button">More</a></li>-->
+            <!--											</ul>-->
+            <!--										</article>-->
+            <!--										<article>-->
+            <!--											<a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>-->
+            <!--											<h3>Amet varius aliquam</h3>-->
+            <!--											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>-->
+            <!--											<ul class="actions">-->
+            <!--												<li><a href="#" class="button">More</a></li>-->
+            <!--											</ul>-->
+            <!--										</article>-->
+            <!--									</div>-->
+            <!--								</section>-->
+
+        </div>
+    </div>
+
+    <!-- 왼쪽 사이드 바를 불러오는 코드 -->
+    <header th:replace="fragment/sideBar :: sideBarFragment('메인화면')"></header>
+
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

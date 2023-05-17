@@ -7,15 +7,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class TestController {
 
-    @RequestMapping("/")
+    @RequestMapping("/test")
     public String test1(){
         return "test1";
     }
 
 
-    @RequestMapping("/index")
+    @RequestMapping("/")
     public String index(){
-        return "index";
+        return "notification";
+    }
+
+    @RequestMapping("/rules")
+    public String generic(){
+        return "rules";
+    }
+
+    @RequestMapping("/organizationalChart")
+    public String elements(){
+        return "organizationalChart";
     }
 
 

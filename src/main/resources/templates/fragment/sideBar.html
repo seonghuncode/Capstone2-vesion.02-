@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<!-- sideBarFragment의경우 왼쪽 사이드바에 해당 하는 코드 -->
+<header th:fragment="sideBarFragment(pageName)">
+
+
+    <!-- Sidebar --------------------------------------------------------------------------------------------------------------------------->
+    <div id="sidebar">
+        <div class="inner">
+
+            <!-- Search ---------------------------------------------------------------------------------------------------------------->
+            <!--            <section id="search" class="alt">-->
+            <!--                <form method="post" action="#">-->
+            <!--                    <input type="text" name="query" id="query" placeholder="Search"/>-->
+            <!--                </form>-->
+            <!--            </section>-->
+
+            <!-- Menu바  ---------------------------------------------------------------------------------------------------------------->
+            <nav id="menu">
+                <header class="major">
+                    <h2>Menu</h2>
+                </header>
+                <ul>
+                    <li><a href="/">공지</a></li>
+                    <li><a href="rules">규칙</a></li>
+                    <li><a href="organizationalChart">조직도</a></li>
+                    <li><a href="#">회비내역</a></li>
+                    <!--										<li>-->   <!-- 메뉴텝에 버튼 추가시 필요 -->
+                    <!--											<span class="opener">Submenu</span>-->
+                    <!--											<ul>-->
+                    <!--												<li><a href="#">Lorem Dolor</a></li>-->
+                    <!--												<li><a href="#">Ipsum Adipiscing</a></li>-->
+                    <!--												<li><a href="#">Tempus Magna</a></li>-->
+                    <!--												<li><a href="#">Feugiat Veroeros</a></li>-->
+                    <!--											</ul>-->
+                    <!--										</li>-->
+                    <!--										<li><a href="#">Etiam Dolore</a></li>-->
+                    <!--										<li><a href="#">Adipiscing</a></li>-->
+                    <!--										<li>-->
+                    <!--											<span class="opener">Another Submenu</span>-->
+                    <!--											<ul>-->
+                    <!--												<li><a href="#">Lorem Dolor</a></li>-->
+                    <!--												<li><a href="#">Ipsum Adipiscing</a></li>-->
+                    <!--												<li><a href="#">Tempus Magna</a></li>-->
+                    <!--												<li><a href="#">Feugiat Veroeros</a></li>-->
+                    <!--											</ul>-->
+                    <!--										</li>-->
+                    <!--										<li><a href="#">Maximus Erat</a></li>-->
+                    <!--										<li><a href="#">Sapien Mauris</a></li>-->
+                    <!--										<li><a href="#">Amet Lacinia</a></li>-->
+                </ul>
+            </nav>
+
+            <!-- Section 회원 셍일--------------------------------------------------------------------------------------------------------------->
+            <section>
+                <header class="major">
+                    <h2>소방 인원 생일</h2>
+                </header>
+                <!--                <div class="mini-posts">-->
+                <!--                    <article>-->
+                <!--                        <a href="#" class="image"><img src="images/pic07.jpg" alt=""/></a>-->
+                <!--                        <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>-->
+                <!--                    </article>-->
+                <!--                    <article>-->
+                <!--                        <a href="#" class="image"><img src="images/pic08.jpg" alt=""/></a>-->
+                <!--                        <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>-->
+                <!--                    </article>-->
+                <!--                    <article>-->
+                <!--                        <a href="#" class="image"><img src="images/pic09.jpg" alt=""/></a>-->
+                <!--                        <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>-->
+                <!--                    </article>-->
+                <!--                </div>-->
+                <table class="table table-sm" style="text-align: center">
+                    <thead>
+                    <tr>
+                        <th style="text-align: center" scope="col">날짜</th>
+                        <th style="text-align: center" scope="col">이름</th>
+                        <th style="text-align: center" scope="col">직책</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>05/02</td>
+                        <td>유성훈</td>
+                        <td>일반</td>
+                    </tr>
+                    <tr>
+                        <td>05/03</td>
+                        <td>김준석</td>
+                        <td>일반</td>
+                    </tr>
+                    <tr>
+                        <td>05/04</td>
+                        <td>윤성직</td>
+                        <td>일반</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <ul class="actions">
+                    <li><a href="#" class="button">More</a></li>
+                </ul>
+            </section>
+
+            <!-- Section(간단 설명) --------------------------------------------------------------------------------------------------->
+            <section>
+                <header class="major">
+                    <h2>소방 연락망</h2>
+                </header>
+                <p>※급한 경우 외에는 동아리 카톡방 혹은 메일로 연락 바랍니다.</p>
+                <ul class="contact">
+                    <li class="icon solid fa-envelope"><a href="#">information@naver.com</a></li>
+                    <li class="icon solid fa-phone">010-1234-3333</li>
+                    <li class="icon solid fa-home">배재대학교 정보과학관 C401<br/>
+                </ul>
+            </section>
+
+            <!-- Footer -->
+            <footer id="footer">
+                <p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>.
+                    Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+            </footer>
+
+        </div>
+    </div>
+
+</header>
