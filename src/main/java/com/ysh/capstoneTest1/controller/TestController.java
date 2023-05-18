@@ -28,6 +28,9 @@ public class TestController {
         return "organizationalChart";
     }
 
-
+    @RequestMapping("/referenceUI")
+    public String referenceUI(){
+        return "referenceUI";
+    }
 
 }
