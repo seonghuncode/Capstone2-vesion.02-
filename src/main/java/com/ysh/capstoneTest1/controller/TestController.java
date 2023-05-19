@@ -33,4 +33,9 @@ public class TestController {
         return "referenceUI";
     }
 
+    @RequestMapping("/moneyHistory")
+    public String moneyHistory(){
+        return "moneyHistory";
+    }
+
 }

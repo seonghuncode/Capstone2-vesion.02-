@@ -1,7 +1,15 @@
+
+/* 조직도 만들어 지면서 생기는 테이블에 대한 css */
 .google-visualization-orgchart-table *{
     margin: 0;
     padding: 2px;
     background-color: white;
-    /*border-collapse: inherit;*/
+    border-collapse: separate;
+    /*box-shadow: 20px 10px 3px -3px #00f;*/
+}
+
+
+.google-visualization-orgchart-table{
+    border-collapse: separate;
 }
 
