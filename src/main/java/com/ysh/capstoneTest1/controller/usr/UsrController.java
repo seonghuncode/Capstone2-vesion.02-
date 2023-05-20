@@ -12,4 +12,9 @@ public class UsrController {
         return "login";
     }
 
+    @RequestMapping("/join")
+    public String join(){
+        return "join";
+    }
+
 }
