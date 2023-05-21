@@ -23,8 +23,13 @@ public class pagesController {
     }
 
     @RequestMapping("/rules")
-    public String generic(){
+    public String rules(){
         return "rules";
+    }
+
+    @RequestMapping("/ruleModify")
+    public String ruleModify(){
+        return "ruleModify";
     }
 
     @RequestMapping("/organizationalChart")
