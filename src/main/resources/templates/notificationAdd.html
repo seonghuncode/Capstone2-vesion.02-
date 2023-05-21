@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <!-- config fragment 사용, header안에 공통적으로 들어가는 것들이 모여있다. -->
+    <th:block th:replace="fragment/config :: configFragment('공지 페이지')"></th:block>
+</head>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Main -->
+    <div id="main">
+        <div class="inner">
+
+            <!-- Header(메인 상단 부분) ----------------------------------------------------------------------------------------------->
+            <header th:replace="fragment/header :: headerFragment"></header>
+
+
+
+            <!-- Banner -------------------------------------------------------------------------------------------------------------->
+            <section id="banner">
+                <div class="content">
+
+                    <h2>공지 추가 페이지</h2>
+
+                    <!-- 제목과 내용을 입력하는 부분 -->
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">공지 제목</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="제목을 입력해 주세요.">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">공지 내용</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="공지 내용을 입력해 주세요."></textarea>
+                    </div>
+
+
+                    <div style="float: right; margin-top: 30px">
+                       <p>작성 날짜 : <input type="date" name="notificationDate"><br></p>
+                    </div>
+
+                </div>
+            </section>
+
+
+
+            <!-- 관리자가 접속했을 경우 해당 버튼을 버여주도록 수정 필요 -->
+            <div style="display: inline; float: right">
+                <a  href="#" class="button">게시물 추가</a>
+            </div>
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+    <!-- 왼쪽 사이드 바를 불러오는 코드 -->
+    <header th:replace="fragment/sideBar :: sideBarFragment('메인화면')"></header>
+
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

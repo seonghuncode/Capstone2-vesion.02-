@@ -8,8 +8,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class pagesController {
 
     @RequestMapping("/notification")
-    public String index(){
+    public String notification(){
         return "notification";
+    }
+
+    @RequestMapping("/notificationModify")
+    public String notificationModify(){
+        return "notificationModify";
+    }
+
+    @RequestMapping("/notificationAdd")
+    public String notificationAdd(){
+        return "notificationAdd";
     }
 
     @RequestMapping("/rules")

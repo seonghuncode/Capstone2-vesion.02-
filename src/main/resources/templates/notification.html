@@ -35,10 +35,10 @@
                     <div style="width: 90%; margin: 0px auto;"> <!-- searchState는nav.css에 위치 -->
                         <form class="d-flex" role="search" style="float: right; display: flex">
                             <!-- d-flex는 input,button이 한줄로 나오도록 하는 css -->
-                            <input class="form-control me-2" type="search" placeholder="회원이름" aria-label="Search"
-                                   id="searchText" style="height: 48px;">
+                            <input class="form-control me-2" type="search" placeholder="작성자 검색" aria-label="Search"
+                                   id="searchText" style="height: 40px;">
                             <!-- 버튼안에 글자를 영어로 입력하면 가로로 잘 나오는데 한글로 입력하면 세로로 나옴 -> width를 지정해 주어야 세로로 나온다 -->
-                            <button class="btn btn-outline-success" type="button" style="width: 120px; height: 48px; " id="doSearch">
+                            <button  class="button" id="doSearch">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      class="bi bi-search"
                                      viewBox="0 0 16 16">
@@ -48,6 +48,9 @@
                             </button>
                         </form>
                     </div>
+
+
+
 
                     <!-- 공지에 대한 페이지 ------------------------------------------------------------------------------------------------------------------>
                     <div class="location">
@@ -59,15 +62,18 @@
                                 <th scope="col">등록일</th>
                                 <th scope="col">작성자</th>
                                 <th scope="col">권한</th>
+                                <th scope="col" style="text-align: center">수정 / 삭제</th>  <!-- 관리자로 로그인 했을 경우에만 보인다 -->
                             </tr>
                             </thead>
                             <tbody>
+                            <!-- 서버랑 통신 성공하면  수정, 삭제에 대한 페이지로 이동하면서 해당 공지 게시물에 대한 고유한 값을 함께 넘겨주어야 한다 -->
                             <tr>
                                 <th scope="row">1</th>
                                 <td>시험기간 안내</td>
                                 <td>2023-04-21</td>
                                 <td>홍길동1</td>
                                 <td>방장</td>
+                                <td style="text-align: center"><a style="border-bottom: 0px; color: black" href="notificationModify"><i class="bi bi-pencil"></i></a> / <a style="border-bottom: 0px; color: black"  href="#"><i class="bi bi-trash"></i></a></td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
@@ -75,6 +81,7 @@
                                 <td>2023-04-21</td>
                                 <td>홍길동2</td>
                                 <td>팀장</td>
+                                <td style="text-align: center"><a style="border-bottom: 0px; color: black" href="#"><i class="bi bi-pencil"></i></a> / <a style="border-bottom: 0px;color: black" href="#"><i class="bi bi-trash"></i></a></td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
@@ -82,6 +89,7 @@
                                 <td>2023-04-21</td>
                                 <td>홍길동1</td>
                                 <td>방장</td>
+                                <td style="text-align: center"><a style="border-bottom: 0px; color: black" href="#"><i class="bi bi-pencil"></i></a> / <a style="border-bottom: 0px; color: black" href="#"><i class="bi bi-trash"></i></a></td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
@@ -89,6 +97,7 @@
                                 <td>2023-04-21</td>
                                 <td>홍길동1</td>
                                 <td>방장</td>
+                                <td style="text-align: center"><a style="border-bottom: 0px; color: black" href="#"><i class="bi bi-pencil"></i></a> / <a style="border-bottom: 0px; color: black" href="#"><i class="bi bi-trash"></i></a></td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
@@ -96,6 +105,7 @@
                                 <td>2023-04-21</td>
                                 <td>홍길동1</td>
                                 <td>방장</td>
+                                <td style="text-align: center"><a style="border-bottom: 0px; color: black" href="#"><i class="bi bi-pencil"></i></a> / <a style="border-bottom: 0px; color: black" href="#"><i class="bi bi-trash"></i></a></td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
@@ -103,6 +113,7 @@
                                 <td>2023-04-21</td>
                                 <td>홍길동1</td>
                                 <td>방장</td>
+                                <td style="text-align: center"><a style="border-bottom: 0px; color: black" href="#"><i class="bi bi-pencil"></i></a> / <a style="border-bottom: 0px; color: black" href="#"><i class="bi bi-trash"></i></a></td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
@@ -110,6 +121,7 @@
                                 <td>2023-04-21</td>
                                 <td>홍길동1</td>
                                 <td>방장</td>
+                                <td style="text-align: center"><a style="border-bottom: 0px; color: black" href="#"><i class="bi bi-pencil"></i></a> / <a style="border-bottom: 0px; color: black" href="#"><i class="bi bi-trash"></i></a></td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
@@ -117,6 +129,7 @@
                                 <td>2023-04-21</td>
                                 <td>홍길동1</td>
                                 <td>방장</td>
+                                <td style="text-align: center"><a style="border-bottom: 0px; color: black" href="#"><i class="bi bi-pencil"></i></a> / <a style="border-bottom: 0px; color: black" href="#"><i class="bi bi-trash"></i></a></td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
@@ -124,6 +137,7 @@
                                 <td>2023-04-21</td>
                                 <td>홍길동1</td>
                                 <td>방장</td>
+                                <td style="text-align: center"><a style="border-bottom: 0px; color: black" href="#"><i class="bi bi-pencil"></i></a> / <a style="border-bottom: 0px; color: black" href="#"><i class="bi bi-trash"></i></a></td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
@@ -131,6 +145,7 @@
                                 <td>2023-04-21</td>
                                 <td>홍길동1</td>
                                 <td>방장</td>
+                                <td style="text-align: center"><a style="border-bottom: 0px; color: black" href="#"><i class="bi bi-pencil"></i></a> / <a style="border-bottom: 0px; color: black" href="#"><i class="bi bi-trash"></i></a></td>
                             </tr>
 
                             </tbody>
@@ -141,9 +156,15 @@
 
 
 
+            <!-- 관리자가 접속했을 경우 해당 버튼을 버여주도록 수정 필요 -->
+            <div style="display: inline">
+                <a  href="notificationAdd" class="button">게시물 추가</a>
+            </div>
+
+
             <!-- 하단 페이징 기능 코드--------------------------------------------------------------------------------------------------->
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-end">
+            <nav aria-label="Page navigation example" style="display: inline; float: right">
+                <ul class="pagination justify-content-end" style="display: inline-flex">
                     <li class="page-item disabled" style="padding-right: 0px;">
                         <a class="page-link">이전</a>
                     </li>
