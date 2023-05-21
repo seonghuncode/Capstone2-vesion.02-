@@ -1,0 +1,223 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <!-- config fragment 사용, header안에 공통적으로 들어가는 것들이 모여있다. -->
+    <th:block th:replace="fragment/config :: configFragment('내 정보 페이지')"></th:block>
+    <link rel="stylesheet" href="assets/css/join.css"/>  <!-- 외부 css파일을 참조 하기 위한 코드 -->
+    <style>
+
+        /*all: initial;*/
+        /*!*요소의 모든 속성을 초깃값으로 변경*!*/
+
+        /*all: inherit;*/
+        /*!*요소의 모든 속성을 상속값으로 변경*!*/
+
+        /*all: unset;*/
+        /*!*요소의 모든 속성을, 속성이 값을 상속하는 경우 상속값으로, 아니면 초깃값으로 변경*!*/
+    </style>
+</head>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+
+
+    <!-- Main -->
+    <div id="main">
+        <div class="inner">
+
+            <!-- Header(메인 상단 부분) ----------------------------------------------------------------------------------------------->
+            <header th:replace="fragment/header :: headerFragment"></header>
+
+
+
+            <!-- Banner -------------------------------------------------------------------------------------------------------------->
+            <section id="banner">
+                <div class="content">
+
+                    <h2>내 정보</h2>
+
+
+                    <!-- 회원 정보 수정 부분 코드 -------------------------------------------------------------------------------------------->
+                    <div style="margin-top: 150px;" >
+                        <div class="main_center" style="width: 80%">
+                            <div class="main_outLine">
+
+
+                                <div class="join_name">
+                                    <div style="font-size: 1.125rem; line-height:1.75rem;">소방 동아리</div>
+                                    <div style="font-size: 1.5rem; line-height: 2rem;">회원 정보 수정</div>
+                                </div>
+
+
+                                <div class="join_input">
+                                    <div class="mb-3">
+                                        <label for="clubCode" class="form-label">동아리 코드</label>
+                                        <input type="text" class="form-control" id="clubCode"
+                                               placeholder="동아리 코드를 입력해 주세요.(3 ~ 9999)">
+                                        <div id="validClubCode" class="validError"></div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">이름</label>
+                                        <input type="text" class="form-control" id="name"
+                                               placeholder="이름을 입력해 주세요.(10글자 이내)">
+                                        <div id="validName" class="validError"></div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">이메일</label>
+                                        <div style="display: flex">
+                                            <input type="email" class="form-control" id="email" name="email"
+                                                   placeholder="이메일을 입력해 주세요.">
+                                            <button type="submit" class="btn btn-outline-primary col-auto" id="emailDuplication">중복확인
+                                            </button>
+                                            <br/>
+                                        </div>
+                                        <div id="validEmail" class="validError"></div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="userId" class="form-label">학번</label>
+                                        <div style="display: flex">
+                                            <input type="text" class="form-control" id="userId"
+                                                   placeholder="학번을 입력해 주세요.">
+                                            <button type="submit" class="btn btn-outline-primary col-auto" id="userIdDuplication">중복확인
+                                            </button>
+                                        </div>
+                                        <div id="validUserId" class="validError"></div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="phoneNumber" class="form-label">전화번호</label>
+                                        <div style="display: flex">
+                                            <input type="text" class="form-control" id="phoneNumber"
+                                                   placeholder="전화번호를 입력해 주세요.">
+                                        </div>
+                                        <div id="validPhoneNumber" class="validError"></div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="address" class="form-label">주소</label>
+                                        <div style="display: flex">
+                                            <input type="text" class="form-control" id="address"
+                                                   placeholder="주소를 입력해 주세요.(현재 거주지)">
+                                        </div>
+                                        <div id="validAddress" class="validError"></div>
+                                    </div>
+                                    <div class="join_show_select">
+                                        <label for="date">생일을 선택하세요 :
+                                            <input type="date"
+                                                   id="date"
+                                                   max="3000-00-00"
+                                                   min="1900-00-00"
+                                                   value="0000-00-00" style="outline: 1px solid black; margin-left: 12px">
+                                        </label>
+                                    </div>
+                                    <div class="join_show_select" style="margin-top: 13px;">
+                                        <div>성별</div>
+                                        <div>
+                                            <input type="radio" name="sex" value="yes" style="" checked>남
+                                            <input type="radio" name="sex" value="no">여
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="userPw1" class="form-label">비밀번호</label>
+                                        <input type="password" class="form-control" id="userPw1"
+                                               placeholder="비밀번호를 입력해 주세요.(조건 : 숫자,문자,특수문자 포함 8자 ~ 15자)">
+                                        <div id="validPassword1" class="validError"></div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="userPw2" class="form-label">비밀번호 재확인</label>
+                                        <input type="password" class="form-control" id="userPw2"
+                                               placeholder="비밀번호를 입력해 주세요.(조건 : 숫자,문자,특수문자 포함 8자 ~ 15자)">
+                                        <div id="validPassword2" class="validError"></div>
+                                    </div>
+                                    <div style="margin-top: 13px">
+                                        <div class="join_show_select">
+                                            <div>팀프로젝트 참여 여부(기본값 : 동의)</div>
+                                            <div>
+                                                <input type="radio" name="project" value="yes" checked>참여
+                                                <input type="radio" name="project" value="no">미참여
+                                            </div>
+                                        </div>
+                                        <div class="join_select_info">
+                                            <div>
+                                                &#8251; 동아리 팀 내에서 진행되는 팀프로젝트에 대해 참여 여부를 선택해 주세요.
+                                            </div>
+                                            <div>
+                                                &#8251; (추후 변경 가능)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: 13px">
+                                        <div class="join_show_select">
+                                            <div>CCTV녹화 여부 동의 여부(기본값 : 비동의)</div>
+                                            <div>
+                                                <input type="radio" name="select" value="yes" >동의
+                                                <input type="radio" name="select" value="no" checked >비동의
+                                            </div>
+                                        </div>
+                                        <div class="join_select_info">
+                                            <div>
+                                                &#8251;소방 C401 내부는 도난 방지 및 안전 관리를 위해 상시 24시간 녹화를 하고 있습니다.
+                                            </div>
+                                            <div>
+                                                &#8251;회원 가입을 위해서는 반드시 동의를 하셔야 가입이 가능 합니다.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="join_btn">
+                                    <button type="button" class="btn btn-outline-primary" id="try-join">회원 정보 수정하기</button>
+                                </div>
+
+                                <div class="text-center my-9">
+                                    <span class="login_copy">&copy;소방</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+
+
+
+            <!-- 관리자가 접속했을 경우 해당 버튼을 버여주도록 수정 필요 -->
+            <div style="display: inline; float: right">
+                <a  href="#" class="button">게시물 수정</a>
+            </div>
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+    <!-- 왼쪽 사이드 바를 불러오는 코드 -->
+    <header th:replace="fragment/sideBar :: sideBarFragment('메인화면')"></header>
+
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

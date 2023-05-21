@@ -17,4 +17,9 @@ public class UsrController {
         return "join";
     }
 
+    @RequestMapping("/myInfo")
+    public String myInfo(){
+        return "myInfo";
+    }
+
 }
