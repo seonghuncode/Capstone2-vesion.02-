@@ -40,9 +40,20 @@
                         <label for="exampleFormControlTextarea1" class="form-label">공지 내용</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="공지 내용을 입력해 주세요."></textarea>
                     </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlImage" class="form-label">이미지 추가</label>
+<!--                        <img src="images/pic01.jpg" class="img-fluid" alt="..." id="exampleFormControlImage">-->
+<!--                        <a  href="#" class="button" style="float: right">이미지 추가 <i class="bi bi-plus-square-fill"></i></a>-->
+                        <!--  자신의 컴퓨터 에서 사진을 선택하는 기능 (해당 이미지를 처리하는 서버 로직 필요)-->
+                        <form action="/upload" method="post" enctype="multipart/form-data" id="exampleFormControlImage">
+                            <input type="file" name="image" accept="image/*">
+                            <input type="submit" value="Upload" style="float: right">
+                        </form>
+                    </div>
 
 
-                    <div style="float: right; margin-top: 30px">
+
+                    <div style="float: left; margin-top: 30px">
                        <p>작성 날짜 : <input type="date" name="notificationDate"><br></p>
                     </div>
 
@@ -53,7 +64,7 @@
 
             <!-- 관리자가 접속했을 경우 해당 버튼을 버여주도록 수정 필요 -->
             <div style="display: inline; float: right">
-                <a  href="#" class="button">게시물 추가</a>
+                <a  href="#" class="button">게시물 추가 저장</a>
             </div>
 
 
