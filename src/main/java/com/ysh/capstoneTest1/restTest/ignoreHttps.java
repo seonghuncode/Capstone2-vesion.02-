@@ -17,7 +17,7 @@ public class ignoreHttps {
     //https를 막기 때문에 인증을 무시 해주어야 통신이 된다 -> 실행하려는 통신 앞에서 메서드를 호출하여 사용해 주면 된다.
 
     public static void ignore() {
-        String urlStr = "https://203.250.133.171:8000";
+        String urlStr = "http://13.209.55.246:80";
 
         StringBuffer sb = new StringBuffer();
 
