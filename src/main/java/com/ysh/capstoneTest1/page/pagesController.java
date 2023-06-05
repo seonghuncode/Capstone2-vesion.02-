@@ -1,4 +1,4 @@
-package com.ysh.capstoneTest1.controller.page;
+package com.ysh.capstoneTest1.page;
 
 
 import org.springframework.stereotype.Controller;
