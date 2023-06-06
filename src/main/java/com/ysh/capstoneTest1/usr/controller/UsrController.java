@@ -3,6 +3,7 @@ package com.ysh.capstoneTest1.usr.controller;
 
 import com.ysh.capstoneTest1.restTest.Client.RestTemplateService;
 import com.ysh.capstoneTest1.usr.service.UserService;
+import com.ysh.capstoneTest1.vo.JoinResponse;
 import com.ysh.capstoneTest1.vo.LoginResponse;
 import com.ysh.capstoneTest1.vo.User;
 import org.springframework.http.ResponseEntity;
@@ -68,6 +69,33 @@ public class UsrController {
 
     @RequestMapping("/join")
     public String join(){
+        return "join";
+    }
+
+    @RequestMapping("/doJoin")
+    @ResponseBody
+    public String doJoin(int clubCode, String name, String email, int departmentCode, int studentId, String phoneNumber, String address, String sex, boolean project, boolean cctv, String birthday){
+
+        System.out.println("=========================");
+        System.out.println(clubCode);
+        System.out.println(name);
+        System.out.println(email);
+        System.out.println(departmentCode);
+        System.out.println(studentId);
+        System.out.println(phoneNumber);
+        System.out.println(address);
+        System.out.println(sex);
+        System.out.println(project);
+        System.out.println(cctv);
+        System.out.println(birthday);
+        System.out.println("=========================");
+
+
+
+
+        //JoinResponse joinResponse = userService.join(clubCode, name, email, departmentCode, studentId, phoneNumber, address, sex,project, cctv);
+        String joinResponse = userService.join(birthday, clubCode, name, email, departmentCode, studentId, phoneNumber, address, sex,project, cctv);
+
         return "join";
     }
 
