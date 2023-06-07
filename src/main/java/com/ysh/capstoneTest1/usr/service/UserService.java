@@ -12,6 +12,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.print.attribute.standard.JobName;
 import java.net.URI;
 
 @Slf4j
@@ -58,7 +59,7 @@ public class UserService {
             LoginResponse result = response.getBody();
             // 성공 응답 처리
 //            System.out.println("Success:");
-//            System.out.println(result);
+            System.out.println(result);
 
             user.setClub_id(result.getClub_id());
             user.setUser_id(result.getUser_id());
@@ -69,7 +70,7 @@ public class UserService {
             // 실패 응답 처리
             String errorResponseBody = ex.getResponseBodyAsString();
 //            System.out.println("Failure:");
-//            System.out.println(errorResponseBody);
+            System.out.println(errorResponseBody);
             user.setMessage("fail");
         }
 
@@ -96,52 +97,8 @@ public class UserService {
     //회원가입 통신
     public String join(String birthday, int clubCode, String name, String email, int departmentCode, int studentId, String phoneNumber, String address, String sex, boolean project, boolean cctv) { // userJoin이라는 리턴 받을 class를 만들어 주어야 된다
 
-//        URI uri = UriComponentsBuilder.fromUriString("http://13.209.55.246:80")
-//                .path("/api/login")
-//                .queryParam("id", loginId)
-//                .queryParam("password", loginPw)
-//                .encode()
-//                .build()
-//                .toUri();
-//        System.out.println(uri.toString());
-//        //encode() : usl응 인코딩 하는 용도
-//
-//
-//        JoinResponse user = new JoinResponse();
-//        try {
-//            RestTemplate restTemplate = new RestTemplate();
-//            // HTTP GET 요청 보내기
-//            ResponseEntity<JoinResponse> response = restTemplate.getForEntity(uri, JoinResponse.class);
-//            JoinResponse result = response.getBody();
-//            // 성공 응답 처리
-////            System.out.println("Success:");
-////            System.out.println(result);
-//
-////            user.setClub_id(result.getClub_id());
-////            user.setUser_id(result.getUser_id());
-////            user.setAccess_token(result.getAccess_token());
-////            user.setAccess_token_end_at(result.getAccess_token_end_at());
-//            user.setMessage("success");
-//        } catch (HttpClientErrorException ex) {
-//            // 실패 응답 처리
-//            String errorResponseBody = ex.getResponseBodyAsString();
-////            System.out.println("Failure:");
-////            System.out.println(errorResponseBody);
-//            user.setMessage("fail");
-//        }
-//
-//
-//
-//        // User 객체 생성 및 필요한 값 설정, user은 따로 LoginResponse를 사용하지 않고 LoginResponse에 들어있는 필드를 넣고 필요에 다라 추가적인 필드를 넣고
-//        //사용해도 된다 현재는 같은 클래스를 사용했지만
-//        //원래는 클래스를 직접 만들어 LoginResponse 클래스와 상호작용해서 해당 객체를 생성하고 반환하는 용도
-////        LoginResponse user = new LoginResponse();
-////        user.setClub_id(result.getClub_id());
-////        user.setUser_id(result.getUser_id());
-////        user.setAccess_token(result.getAccess_token());
-////        user.setAccess_token_end_at(result.getAccess_token_end_at());
-//
-//        return user;
+        //리턴할 결과값
+        String result;
 
         //핸드폰 번호를 -로 구분해서 바꾸어 준다----------------------------
         StringBuilder formattedNumber = new StringBuilder();
@@ -155,9 +112,6 @@ public class UserService {
         phoneNumber = formattedNumber.toString();
         //System.out.println(phoneNumber);
         //---------------------------------------------------------------------
-
-
-
 
 
         try {
@@ -175,19 +129,7 @@ public class UserService {
                     "\"gender\": \""+sex+"\", \"phone\": [\""+phoneNumber+"\"], \"email\": \""+email+"\", \"address\": \""+address+"\", " +
                     "\"birthday\": \""+birthday+"\", \"cctv_consent\": "+cctv+", \"project_consent\": "+project+"}";
 
-            System.out.println(requestBody);
-//        requestBody.add("club_code", clubCode);
-//        requestBody.add("department_code", departmentCode);
-//        requestBody.add("student_id", studentId);
-//        requestBody.add("name", name);
-//        requestBody.add("gender", sex);
-//        requestBody.add("phone", phoneNumber);
-//
-//        requestBody.add("email", email);
-//        requestBody.add("address", address);
-//        requestBody.add("birthday", birthday);
-//        requestBody.add("cctv_consent", cctv);
-//        requestBody.add("project_consent", project);
+            System.out.println("responseBody1" + requestBody);
 
             HttpEntity<String> entity = new HttpEntity<>(requestBody, headers);
 
@@ -197,18 +139,22 @@ public class UserService {
             // HTTP 응답 결과 가져오기
             String responseBody = response.getBody();
 
-            System.out.println(responseBody);
+            System.out.println("responseBody" + responseBody);
+
+            //성공할 경우
+            result = "success";
 
         } catch (HttpClientErrorException ex) {
             // 실패 응답 처리
             String errorResponseBody = ex.getResponseBodyAsString();
-            System.out.println(errorResponseBody);
+            System.out.println("error" + errorResponseBody);
+            result = "fail";
         }
 
 
 
 
-        return "dsf";
+        return result;
 
     }
 

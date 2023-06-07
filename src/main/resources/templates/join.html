@@ -30,7 +30,7 @@
                 <div class="join_input">
                     <div class="mb-3">
                         <label for="clubCode" class="form-label">동아리 코드</label>
-                        <input type="text" class="form-control" id="clubCode" name="clubCode"
+                        <input type="number" class="form-control" id="clubCode" name="clubCode"
                                placeholder="동아리 코드를 입력해 주세요.(3 ~ 9999)">
                         <div id="validClubCode" class="validError"></div>
                     </div>
@@ -53,14 +53,14 @@
                     </div>
                     <div class="mb-3">
                         <label for="departmentCode" class="form-label">학과코드</label>
-                        <input type="text" class="form-control" id="departmentCode" name="departmentCode"
+                        <input type="number" class="form-control" id="departmentCode" name="departmentCode"
                                placeholder="이름을 입력해 주세요.(10글자 이내)">
                         <div id="validDepartmentCode" class="validError"></div>
                     </div>
                     <div class="mb-3">
                         <label for="studentId" class="form-label">학번</label>
                         <div style="display: flex">
-                            <input type="text" class="form-control" id="studentId" name="studentId"
+                            <input type="number" class="form-control" id="studentId" name="studentId"
                                    placeholder="학번을 입력해 주세요.">
                             <button type="submit" class="btn btn-outline-primary col-auto" id="studentIdDuplication">
                                 중복확인
@@ -72,7 +72,7 @@
                         <label for="phoneNumber" class="form-label">전화번호</label>
                         <div style="display: flex">
                             <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
-                                   placeholder="전화번호를 입력해 주세요.">
+                                   placeholder="전화번호를 입력해 주세요.(숫자만 입력 가능 합니다.)">
                         </div>
                         <div id="validPhoneNumber" class="validError"></div>
                     </div>
