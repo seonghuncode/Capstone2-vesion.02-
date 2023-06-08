@@ -65,6 +65,11 @@ public class UsrController {
 
     }
 
+    @RequestMapping("/findId")
+    public String findId(){
+        return"findId";
+    }
+
 
 
     @RequestMapping("/join")
