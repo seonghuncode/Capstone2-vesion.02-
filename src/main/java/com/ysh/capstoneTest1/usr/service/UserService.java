@@ -1,19 +1,19 @@
 package com.ysh.capstoneTest1.usr.service;
 
 
-import com.ysh.capstoneTest1.vo.JoinResponse;
 import com.ysh.capstoneTest1.vo.LoginResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.print.attribute.standard.JobName;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -155,6 +155,59 @@ public class UserService {
 
 
         return result;
+
+    }
+
+
+    public List<Map<String, Object>> findeDepartmentCode(int clubCode){
+
+        URI uri = UriComponentsBuilder.fromUriString("http://13.209.55.246:80")
+                .path("/api/club/departments")
+                .queryParam("club_code", clubCode)
+                .encode()
+                .build()
+                .toUri();
+//        System.out.println(uri.toString());
+
+
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+            // HTTP GET 요청 보내기(List형식으로 학과. 학과 코드를 key,value형식으로 받는다.)
+            ResponseEntity<List> response = restTemplate.getForEntity(uri, List.class);
+
+            //resultList에 응답 받은 값을 넣는다
+            List<Map<String, Object>> resultList = response.getBody();
+
+            // resultList에 있는 값을 key와 value형식으로 json형식에 맞게 넣어준다
+            for (Map<String, Object> map : resultList) {
+                String name = (String) map.get("name");
+                String code = (String) map.get("code");
+            }
+//            System.out.println("============================");
+//            System.out.println(resultList);
+//            System.out.println("============================");
+
+            // 성공 응답 처리
+
+
+            return resultList;
+
+        } catch (HttpClientErrorException ex) {
+            // 실패 응답 처리
+            String errorResponseBody = ex.getResponseBodyAsString();
+//            System.out.println("Failure:");
+
+            List<Map<String, Object>> resultList = new ArrayList<>();
+            Map<String, Object> map = new HashMap<>();
+            map.put("result", "fail");
+
+            // Map을 List에 추가
+            resultList.add(map);
+
+            return resultList;
+        }
+
+
 
     }
 

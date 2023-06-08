@@ -11,4 +11,5 @@ import lombok.ToString;
 @ToString
 public class Result {
     private String result;
+    private String message;
 }

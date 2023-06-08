@@ -8,11 +8,9 @@ import com.ysh.capstoneTest1.vo.LoginResponse;
 import com.ysh.capstoneTest1.vo.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -91,6 +89,7 @@ public class UsrController {
         System.out.println(cctv);
         System.out.println(birthday);
         System.out.println("=========================");
+//        System.out.println("Selected department code: " + departmentCode);
 
         //입력 값 예외처리-----------------------------------------------------
 //        int clubCode int departmentCode, int studentId
@@ -142,6 +141,23 @@ public class UsrController {
 
         return message;
     }
+
+
+    //학과 찾기 버튼클릭시 ajax로 통신을 받아서 -> 외부 서버로 부터 받은 값을 가공해서 -> 자바스크립트로 리턴 하는 순서
+    //사용자가 회원가입시 동아리 코드를 입력하고 학과 찾기를 클릭했을 경우 학과코드와 학과면을 List로 받아오는 요청
+    @RequestMapping(value = "/fineDepartmentCode", produces = "application/json; charset=utf8", method = {RequestMethod.GET})
+    @ResponseBody
+    public List<Map<String, Object>> findDepartmentCode(@RequestParam  int clubCode){
+
+      List<Map<String, Object>> result = userService.findeDepartmentCode(clubCode);
+//      System.out.println(result);
+
+        
+        return result;
+
+    }
+
+
 
     @RequestMapping("/myInfo")
     public String myInfo(){

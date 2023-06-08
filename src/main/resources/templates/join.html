@@ -30,9 +30,20 @@
                 <div class="join_input">
                     <div class="mb-3">
                         <label for="clubCode" class="form-label">동아리 코드</label>
-                        <input type="number" class="form-control" id="clubCode" name="clubCode"
-                               placeholder="동아리 코드를 입력해 주세요.(3 ~ 9999)">
+                        <div style="display: flex">
+                            <input type="number" class="form-control" id="clubCode" name="clubCode"
+                                   placeholder="동아리 코드를 입력해 주세요.(3 ~ 9999)">
+                            <button type="button" class="btn btn-outline-primary col-auto" id="clubCodeDuplication">학과 찾기
+                            </button>
+                            <br/>
+                        </div>
                         <div id="validClubCode" class="validError"></div>
+                    </div>
+                    <div class="mb-3" id="myContainer">
+                        <label for="departmentCode" class="form-label">학과코드</label>
+                        <input type="number" class="form-control" id="departmentCode" name="departmentCode"
+                               placeholder="동아리 코드를 입력하고 학과 찾기 버튼을 클릭해 주세요." disabled>
+                        <div id="validDepartmentCode" class="validError"></div>
                     </div>
                     <div class="mb-3">
                         <label for="name" class="form-label">이름</label>
@@ -45,26 +56,20 @@
                         <div style="display: flex">
                             <input type="email" class="form-control" id="email" name="email"
                                    placeholder="이메일을 입력해 주세요.">
-                            <button type="submit" class="btn btn-outline-primary col-auto" id="emailDuplication">중복확인
-                            </button>
+<!--                            <button type="submit" class="btn btn-outline-primary col-auto" id="emailDuplication">중복확인-->
+<!--                            </button>-->
                             <br/>
                         </div>
                         <div id="validEmail" class="validError"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="departmentCode" class="form-label">학과코드</label>
-                        <input type="number" class="form-control" id="departmentCode" name="departmentCode"
-                               placeholder="이름을 입력해 주세요.(10글자 이내)">
-                        <div id="validDepartmentCode" class="validError"></div>
                     </div>
                     <div class="mb-3">
                         <label for="studentId" class="form-label">학번</label>
                         <div style="display: flex">
                             <input type="number" class="form-control" id="studentId" name="studentId"
                                    placeholder="학번을 입력해 주세요.">
-                            <button type="submit" class="btn btn-outline-primary col-auto" id="studentIdDuplication">
-                                중복확인
-                            </button>
+<!--                            <button type="submit" class="btn btn-outline-primary col-auto" id="studentIdDuplication">-->
+<!--                                중복확인-->
+<!--                            </button>-->
                         </div>
                         <div id="validUserId" class="validError"></div>
                     </div>
@@ -162,8 +167,12 @@
     </div>
 </form>
 
-<!--<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
-<!--<script src="/resources/static/js/joinAjax.js"></script>-->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    // var clubCode = [[${dateCnt}]];
+    //console.log(username);
+</script>
+<script src="/js/joinAjax.js"></script>
 
 
 </body>
