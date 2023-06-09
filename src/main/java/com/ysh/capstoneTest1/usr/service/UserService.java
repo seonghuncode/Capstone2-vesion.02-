@@ -314,10 +314,75 @@ public class UserService {
 
             return resultList;
         }
+    }
 
+
+
+    public void refreshToken(HttpServletRequest request){
+
+
+        HttpSession session = request.getSession();
+
+        //g현재 세션에 저장 된 정보
+        String token = (String) session.getAttribute("token");
+        int club_id = (int)session.getAttribute("club_id");
+        int user_id = (int)session.getAttribute("user_id");
+
+
+        System.out.println("토큰 :  " + session.getAttribute("token"));
+        System.out.println("club_id : " + session.getAttribute("club_id"));
+        System.out.println("user_id : " + session.getAttribute("user_id"));
+
+        URI uri = UriComponentsBuilder.fromUriString("http://13.209.55.246:80")
+                .path("/api/token")
+                .queryParam("club_id", club_id)
+                .queryParam("user_id", user_id)
+                .encode()
+                .build()
+                .toUri();
+
+        System.out.println(uri.toString());
+
+        LoginResponse user = new LoginResponse();
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+            // HTTP GET 요청 보내기
+            ResponseEntity<LoginResponse> response = restTemplate.getForEntity(uri, LoginResponse.class);
+            LoginResponse result = response.getBody();
+            // 성공 응답 처리
+//            System.out.println("Success:");
+            System.out.println(result);
+
+            user.setClub_id(result.getClub_id());
+            user.setUser_id(result.getUser_id());
+            user.setAccess_token(result.getAccess_token());
+            user.setAccess_token_end_at(result.getAccess_token_end_at());
+            user.setMessage("success");
+
+            //세션 초기화 후다시 저장
+            //세션에 토큰값 저장, club_id, user_id 저장 -> 토큰 재발급 시 필요
+            session.invalidate();
+
+            token = result.getAccess_token();
+            session.setAttribute("token", token);
+
+            club_id = result.getClub_id();
+            session.setAttribute("club_id", club_id);
+
+            user_id = result.getUser_id();
+            session.setAttribute("user_id", user_id);
+
+        } catch (HttpClientErrorException ex) {
+            // 실패 응답 처리
+            String errorResponseBody = ex.getResponseBodyAsString();
+//            System.out.println("Failure:");
+            System.out.println(errorResponseBody);
+            user.setMessage("fail");
+        }
 
 
     }
+
 
 
 

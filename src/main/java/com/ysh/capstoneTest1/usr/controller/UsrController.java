@@ -273,7 +273,15 @@ public class UsrController {
             return message;
         }
 
-        
+
+    }
+
+
+    //세션이 만료되면 토큰을 재발급 받아주는 로직
+    @RequestMapping("/refreshToken")
+    @ResponseBody
+    public void refreshToken(HttpServletRequest request) {
+         userService.refreshToken(request);
     }
 
 
