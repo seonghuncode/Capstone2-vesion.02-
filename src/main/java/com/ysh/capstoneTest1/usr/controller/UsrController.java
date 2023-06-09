@@ -103,15 +103,51 @@ public class UsrController {
             message = "<script>alert('동아리 코드, 이름, 이메일이 일치 하지 않습니다.');location.href='findId';</script>";
         }
 
-
-
-
         return message;
     }
+
 
     @RequestMapping("/findPw")
     public String findPw(){
         return "findPw";
+    }
+
+
+
+    @RequestMapping("/doFindPw")
+    @ResponseBody
+    public String doFindPw(@RequestParam(value = "clubCode", defaultValue = "0") int clubCode, String name, String studentId){
+
+        String message = "";
+
+        if(clubCode == 0){
+            message = "<script>alert('동아리 코드를 입력해 주세요.');location.href='findPw';</script>";
+            return message;
+        }else if(name.trim().length() == 0){
+            message = "<script>alert('이름을 입력해 주세요.');location.href='findPw';</script>";
+            return message;
+        }else if(studentId.trim().length() == 0){
+            message = "<script>alert('학번을 입력해 주세요.');location.href='findPw';</script>";
+            return message;
+        }
+
+
+        LoginResponse result = userService.findPw(clubCode, name, studentId);
+
+        System.out.println(result);
+
+        int userId = result.getUser_id();
+        int studentId2 = result.getStudent_id();
+        String password = result.getPassword();
+
+        if(result.getMessage().equals("success")){
+            message = "<script>alert('회원 비밀번호: " + password +  "');location.href='login';</script>";
+        }else if(result.getMessage().equals("fail")){
+            message = "<script>alert('동아리 코드, 이름, 학번이 일치 하지 않습니다.');location.href='findPw';</script>";
+        }
+
+        return message;
+
     }
 
 

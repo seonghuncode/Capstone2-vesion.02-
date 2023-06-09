@@ -19,4 +19,5 @@ public class LoginResponse {
 
     //아이디 찾기 에서 사용
     private int student_id;
+    private String password;
 }
