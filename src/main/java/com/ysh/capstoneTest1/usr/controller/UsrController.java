@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -248,6 +249,31 @@ public class UsrController {
     @RequestMapping("/myInfo")
     public String myInfo(){
         return "myInfo";
+    }
+
+    @RequestMapping("/logout")
+    @ResponseBody
+    public String logout(HttpServletRequest request){
+
+        HttpSession session = request.getSession(false);
+
+//        String token = (String)session.getAttribute("token");
+//        int club_id = (int)session.getAttribute("club_id");
+//        int user_id = (int)session.getAttribute("user_id");
+
+        String message = "";
+        
+        //세션을 삭제
+        if (session != null) {
+            session.invalidate();
+            message = "<script>alert('로그아웃 되었습니다.');location.href='login';</script>";
+            return message;
+        }else{
+            message = "<script>alert('이미 로그아웃 되었습니다.');location.href='login';</script>";
+            return message;
+        }
+
+        
     }
 
 

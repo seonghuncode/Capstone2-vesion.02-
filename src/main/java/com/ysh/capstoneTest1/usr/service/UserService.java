@@ -96,7 +96,7 @@ public class UserService {
             JsonNode jsonNode = objectMapper.readTree(errorResponseBody);
             String errorMessage = jsonNode.get("message").asText();
             //System.out.println(errorMessage);
-            
+
             user.setMessage("fail");
         }
 
