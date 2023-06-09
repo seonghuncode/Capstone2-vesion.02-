@@ -323,8 +323,8 @@ public class UserService {
 
         HttpSession session = request.getSession();
 
-        //g현재 세션에 저장 된 정보
-        String token = (String) session.getAttribute("token");
+        //g현재 세션에 저장 된 정보보
+       String token = (String) session.getAttribute("token");
         int club_id = (int)session.getAttribute("club_id");
         int user_id = (int)session.getAttribute("user_id");
 
@@ -378,6 +378,68 @@ public class UserService {
 //            System.out.println("Failure:");
             System.out.println(errorResponseBody);
             user.setMessage("fail");
+        }
+
+    }
+
+
+    //최근 로그인 정보를 외부 서버로 부터 불러오는 로직
+    //사용 방법 : 로그인시 해당 함수를 실행 시켜 controller단에서 model.addAtribute로 데이터를 넘겨주어 사용
+    //작업 : 진행중
+    // : 현재 로그인 하고 -> 토큰값을 보내줄 경우 정상적인 해당 최근 접속 정보를 불러오는 것 까지 성공
+    // : 수정 부분 : 1, 4 부분을 세션에 저장된 값을 변수에 담아 변수로 수정
+    public  List<Map<String, Object>>  recentLoginInfo(HttpServletRequest request){
+
+        HttpSession session = request.getSession();
+
+        String url = "http://13.209.55.246:80/api/clubs/1/users/4/loginInfomation";
+        String authToken = (String) session.getAttribute("token");
+        System.out.println(authToken);
+
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set(HttpHeaders.AUTHORIZATION, "Bearer " + authToken);
+        headers.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
+
+        System.out.println(url.toString());
+
+
+        try {
+            // HTTP GET 요청 보내기(List형식으로 학과. 학과 코드를 key,value형식으로 받는다.)
+            RequestEntity<Void> requestEntity = new RequestEntity<>(headers, HttpMethod.GET, URI.create(url));
+            ResponseEntity<List> responseEntity = restTemplate.exchange(requestEntity, List.class);
+            
+
+            //resultList에 응답 받은 값을 넣는다
+            List<Map<String, Object>> resultList = responseEntity.getBody();
+
+            // resultList에 있는 값을 key와 value형식으로 json형식에 맞게 넣어준다
+            for (Map<String, Object> map : resultList) {
+                String name = (String) map.get("name");
+                String code = (String) map.get("code");
+            }
+            System.out.println("============================");
+            System.out.println(resultList);
+            System.out.println("============================");
+
+            // 성공 응답 처리
+            
+            return resultList;
+
+        } catch (HttpClientErrorException ex) {
+            // 실패 응답 처리
+            String errorResponseBody = ex.getResponseBodyAsString();
+            //System.out.println("Failure:");
+            System.out.println(errorResponseBody);
+
+            List<Map<String, Object>> resultList = new ArrayList<>();
+            Map<String, Object> map = new HashMap<>();
+            map.put("result", "fail");
+
+            // Map을 List에 추가
+            resultList.add(map);
+
+            return resultList;
         }
 
 

@@ -285,4 +285,12 @@ public class UsrController {
     }
 
 
+    //최근 회원 접속 정보 테스트
+    @RequestMapping("/test/refreshToken")
+    @ResponseBody
+    public  void  Test(HttpServletRequest request) {
+        List<Map<String, Object>> test =  userService.recentLoginInfo(request);
+    }
+
+
 }
