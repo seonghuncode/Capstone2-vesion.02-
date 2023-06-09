@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,13 +38,13 @@ public class UsrController {
 
     @GetMapping("/doLogin")
     @ResponseBody
-    public String doLogin(String loginId, String loginPw) {
+    public String doLogin(String loginId, String loginPw, HttpServletRequest request) throws Exception {
 //        String loginId = "1761013";
 //        String loginPw = "1761013@pcu.ac.kr";
 
         //로그인 성공시 club_id, user_id, access_token, access_token_end_at에 대한 정보를 갖는다
         //LoginResponse loginResponse = restTemplateService.login(loginId, loginPw);
-        LoginResponse loginResponse = userService.login(loginId, loginPw);
+        LoginResponse loginResponse = userService.login(loginId, loginPw, request);
 
         //System.out.println(loginResponse.getMessage());
         
@@ -59,7 +60,7 @@ public class UsrController {
             message = "<script>alert('아이디 비밀번호가 일치 하지 않습니다.');location.href='login';</script>";
         }
 
-        System.out.println("loginResponse" + loginResponse);
+        //System.out.println("loginResponse" + loginResponse);
 
         return message;
 

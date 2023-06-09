@@ -1,6 +1,8 @@
 package com.ysh.capstoneTest1.usr.service;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ysh.capstoneTest1.vo.LoginResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
@@ -9,6 +11,8 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +29,7 @@ public class UserService {
 
 
     //로그인 통신
-    public LoginResponse login(String loginId, String loginPw) { // userJoin이라는 리턴 받을 class를 만들어 주어야 된다
+    public LoginResponse login(String loginId, String loginPw, HttpServletRequest request) throws Exception{ // userJoin이라는 리턴 받을 class를 만들어 주어야 된다
 
         URI uri = UriComponentsBuilder.fromUriString("http://13.209.55.246:80")
                 .path("/api/login")
@@ -59,18 +63,40 @@ public class UserService {
             LoginResponse result = response.getBody();
             // 성공 응답 처리
 //            System.out.println("Success:");
-            System.out.println(result);
+            //System.out.println(result);
 
             user.setClub_id(result.getClub_id());
             user.setUser_id(result.getUser_id());
             user.setAccess_token(result.getAccess_token());
             user.setAccess_token_end_at(result.getAccess_token_end_at());
             user.setMessage("success");
+
+            //세션에 토큰값 저장, club_id, user_id 저장 -> 토큰 재발급 시 필요
+            HttpSession session = request.getSession();
+            String token = result.getAccess_token();
+            session.setAttribute("token", token);
+
+            int club_id = result.getClub_id();
+            session.setAttribute("club_id", club_id);
+
+            int user_id = result.getUser_id();
+            session.setAttribute("user_id", user_id);
+
+            System.out.println("토큰 :  " + session.getAttribute("token"));
+            System.out.println("club_id : " + session.getAttribute("club_id"));
+            System.out.println("user_id : " + session.getAttribute("user_id"));
         } catch (HttpClientErrorException ex) {
             // 실패 응답 처리
             String errorResponseBody = ex.getResponseBodyAsString();
 //            System.out.println("Failure:");
             System.out.println(errorResponseBody);
+
+            //에러 메세지 에서 특정 부분 message만 꺼내서 변수에 담는다.
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(errorResponseBody);
+            String errorMessage = jsonNode.get("message").asText();
+            //System.out.println(errorMessage);
+            
             user.setMessage("fail");
         }
 
