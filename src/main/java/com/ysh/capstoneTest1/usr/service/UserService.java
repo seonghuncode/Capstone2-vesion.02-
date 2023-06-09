@@ -90,6 +90,47 @@ public class UserService {
     }
 
 
+    //아이디 찾기에 대한 통신
+    public LoginResponse findId(int clubCode, String name, String email){
+
+        URI uri = UriComponentsBuilder.fromUriString("http://13.209.55.246:80")
+                .path("/api/idFind")
+                .queryParam("club_code", clubCode)
+                .queryParam("name", name)
+                .queryParam("email", email)
+                .encode()
+                .build()
+                .toUri();
+        //System.out.println(uri.toString());
+
+        LoginResponse user = new LoginResponse();
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+            // HTTP GET 요청 보내기
+            ResponseEntity<LoginResponse> response = restTemplate.getForEntity(uri, LoginResponse.class);
+            LoginResponse result = response.getBody();
+            // 성공 응답 처리
+//            System.out.println("Success:");
+            //System.out.println(result);
+
+//            user.setClub_code(result.getClub_code());
+//            user.setName(result.getName());
+//            user.setEmail(result.getEmail());
+            user.setUser_id(result.getUser_id());
+            user.setStudent_id(result.getStudent_id());
+            user.setMessage("success");
+        } catch (HttpClientErrorException ex) {
+            // 실패 응답 처리
+            String errorResponseBody = ex.getResponseBodyAsString();
+//            System.out.println("Failure:");
+            //System.out.println(errorResponseBody);
+            user.setMessage("fail");
+        }
+
+        return user;
+    }
+
+
 
 
 

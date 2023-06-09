@@ -27,20 +27,20 @@
 <body class="is-preload">
 
 
-<form method="get" action="/doFindId">
+<form method="get" action="#">
     <div class="flex justify-center h-screen w-1/3 flex-col m-0 m-auto"> <!-- 아이디 찾기 창 화면 중앙 우치 -->
         <div class="border-solid border border-black"> <!-- 아이디 찾기 창 테두리 검정 -->
             <div class="text-center m-7 "> <!-- 아이디 찾기 메인 문구 위치, 마진값 -->
                 <div class="text-lg font-bold">동아리</div>
-                <div class="text-2xl font-bold">아이디 찾기</div>
+                <div class="text-2xl font-bold">비밀번호 찾기</div>
             </div>
 
             <div class="text-center mx-3 mt-14 "> <!-- input box정중앙 위치, 좌우 마진, 위쪽 마진 -->
 
                 <div class="mb-3">
-                    <label for="clubCode" class="form-label" style="float: left">동아리 코드</label>
-                    <input type="number" class="form-control" id="clubCode"
-                           placeholder="동아리 코드를 입력해 주세요.(숫자만 입력 가능)" name="clubCode">
+                    <label for="clubCode" class="form-label" style="float: left">학과코드</label>
+                    <input type="nubmer" class="form-control" id="clubCode"
+                           placeholder="학과 코드를 입력해 주세요.(숫자만 입력 가능)" name="name">
                     <div id="validClubCode" class="validError"></div>
                 </div>
 
@@ -52,25 +52,25 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="email" class="form-label" style="float: left">이메일</label>
-                    <input type="email" class="form-control" id="email"
-                           placeholder="회원 이메일을 입력해 주세요." name="email">
-                    <div id="validEmail" class="validError"></div>
+                    <label for="studentId" class="form-label" style="float: left">학번</label>
+                    <input type="text" class="form-control" id="studentId"
+                           placeholder="회원 이메일을 입력해 주세요." name="studentId">
+                    <div id="validStudentId" class="validError"></div>
                 </div>
 
             </div>
             <div id="validNotCorrect" class="validError"></div>
             <div class="text-center login_function"> <!-- id,pw찾지 / 회원가입 기능 -->
                 <div>
-                    <a href="/login" class="mx-3">로그인</a>
+                    <a href="/findId" class="mx-3">아이디찾기</a>
                     <span>|</span>
-                    <a href="/findPw" class="mx-3">비밀번호찾기</a>
+                    <a href="/login" class="mx-3">로그인</a>
                     <span>|</span>
                     <a href="/join" class="mx-3">회원가입</a>
                 </div>
             </div>
             <div class="text-center">
-                <button type="submit" class="btn btn-outline-primary login_btn" id="try-login">아이디 찾기</button>
+                <button type="submit" class="btn btn-outline-primary login_btn" id="try-login">비밀번호 찾기</button>
             </div>
             <div class="text-center my-9">
                 <span class="login_copy">&copy;소방</span>

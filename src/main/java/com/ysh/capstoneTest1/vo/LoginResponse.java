@@ -16,4 +16,7 @@ public class LoginResponse {
 
     private String message; //성공 여부를 담는다
     private String trace;
+
+    //아이디 찾기 에서 사용
+    private int student_id;
 }
