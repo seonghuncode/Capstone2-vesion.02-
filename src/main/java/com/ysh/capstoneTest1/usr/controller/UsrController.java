@@ -8,7 +8,9 @@ import com.ysh.capstoneTest1.vo.LoginResponse;
 import com.ysh.capstoneTest1.vo.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -33,31 +35,32 @@ public class UsrController {
 
 
     @RequestMapping("/login")
-    public String login(){
+    public String login() {
         return "login";
     }
 
     @GetMapping("/doLogin")
     @ResponseBody
-    public String doLogin(String loginId, String loginPw, HttpServletRequest request) throws Exception {
+    public String doLogin(String loginId, String loginPw, HttpServletRequest request, Model model) throws Exception {
 //        String loginId = "1761013";
 //        String loginPw = "1761013@pcu.ac.kr";
 
         //로그인 성공시 club_id, user_id, access_token, access_token_end_at에 대한 정보를 갖는다
         //LoginResponse loginResponse = restTemplateService.login(loginId, loginPw);
-        LoginResponse loginResponse = userService.login(loginId, loginPw, request);
+        LoginResponse loginResponse = userService.login(loginId, loginPw, request, model);
 
         //System.out.println(loginResponse.getMessage());
-        
+
         String message = "";
-        if(loginId.trim().length() == 0){
+        if (loginId.trim().length() == 0) {
             message = "<script>alert('학번을 입력해 주세요.');location.href='login';</script>";
-        }else if(loginPw.trim().length() == 0){
+        } else if (loginPw.trim().length() == 0) {
             message = "<script>alert('비밀번호를 입력해 주세요.');location.href='login';</script>";
-        }
-        else if(loginResponse.getMessage().equals("success")){
+        } else if (loginResponse.getMessage().equals("success")) {
             message = "<script>alert('로그인 성공');location.href='notification';</script>";
-        }else if(loginResponse.getMessage().equals("fail")){
+
+            //Test(request, model);
+        } else if (loginResponse.getMessage().equals("fail")) {
             message = "<script>alert('아이디 비밀번호가 일치 하지 않습니다.');location.href='login';</script>";
         }
 
@@ -67,28 +70,28 @@ public class UsrController {
 
     }
 
+
     @RequestMapping("/findId")
-    public String findId(){
-        return"findId";
+    public String findId() {
+        return "findId";
     }
 
     @RequestMapping("/doFindId")
     @ResponseBody
-    public String doFindId(@RequestParam(value = "clubCode", defaultValue = "0") int clubCode, String name, String email){
+    public String doFindId(@RequestParam(value = "clubCode", defaultValue = "0") int clubCode, String name, String email) {
 
         String message = "";
 
-        if(clubCode == 0){
+        if (clubCode == 0) {
             message = "<script>alert('동아리 코드를 입력해 주세요.');location.href='findId';</script>";
             return message;
-        }else if(name.trim().length() == 0){
+        } else if (name.trim().length() == 0) {
             message = "<script>alert('이름을 입력해 주세요.');location.href='findId';</script>";
             return message;
-        }else if(email.trim().length() == 0){
+        } else if (email.trim().length() == 0) {
             message = "<script>alert('이메일을 입력해 주세요.');location.href='findId';</script>";
             return message;
         }
-
 
 
         LoginResponse result = userService.findId(clubCode, name, email);
@@ -98,10 +101,10 @@ public class UsrController {
         int userId = result.getUser_id();
         int studentId = result.getStudent_id();
 
-        if(result.getMessage().equals("success")){
+        if (result.getMessage().equals("success")) {
             //message = "<script>alert('회원의 아이디 : + `userId` +  <br>학번 :  + studentId +   ');location.href='login';</script>";
             message = "<script>alert('회원의 아이디: " + userId + "\\n학번: " + studentId + "');location.href='login';</script>";
-        }else if(result.getMessage().equals("fail")){
+        } else if (result.getMessage().equals("fail")) {
             message = "<script>alert('동아리 코드, 이름, 이메일이 일치 하지 않습니다.');location.href='findId';</script>";
         }
 
@@ -110,25 +113,24 @@ public class UsrController {
 
 
     @RequestMapping("/findPw")
-    public String findPw(){
+    public String findPw() {
         return "findPw";
     }
 
 
-
     @RequestMapping("/doFindPw")
     @ResponseBody
-    public String doFindPw(@RequestParam(value = "clubCode", defaultValue = "0") int clubCode, String name, String studentId){
+    public String doFindPw(@RequestParam(value = "clubCode", defaultValue = "0") int clubCode, String name, String studentId) {
 
         String message = "";
 
-        if(clubCode == 0){
+        if (clubCode == 0) {
             message = "<script>alert('동아리 코드를 입력해 주세요.');location.href='findPw';</script>";
             return message;
-        }else if(name.trim().length() == 0){
+        } else if (name.trim().length() == 0) {
             message = "<script>alert('이름을 입력해 주세요.');location.href='findPw';</script>";
             return message;
-        }else if(studentId.trim().length() == 0){
+        } else if (studentId.trim().length() == 0) {
             message = "<script>alert('학번을 입력해 주세요.');location.href='findPw';</script>";
             return message;
         }
@@ -142,9 +144,9 @@ public class UsrController {
         int studentId2 = result.getStudent_id();
         String password = result.getPassword();
 
-        if(result.getMessage().equals("success")){
-            message = "<script>alert('회원 비밀번호: " + password +  "');location.href='login';</script>";
-        }else if(result.getMessage().equals("fail")){
+        if (result.getMessage().equals("success")) {
+            message = "<script>alert('회원 비밀번호: " + password + "');location.href='login';</script>";
+        } else if (result.getMessage().equals("fail")) {
             message = "<script>alert('동아리 코드, 이름, 학번이 일치 하지 않습니다.');location.href='findPw';</script>";
         }
 
@@ -153,15 +155,14 @@ public class UsrController {
     }
 
 
-
     @RequestMapping("/join")
-    public String join(){
+    public String join() {
         return "join";
     }
 
     @RequestMapping("/doJoin")
     @ResponseBody
-    public String doJoin(@RequestParam(value = "clubCode", defaultValue = "0") int clubCode, String name, String email, @RequestParam(value = "departmentCode", defaultValue = "0") int departmentCode, @RequestParam(value = "studentId", defaultValue = "0") int studentId, String phoneNumber, String address, String sex, boolean project, boolean cctv, String birthday){
+    public String doJoin(@RequestParam(value = "clubCode", defaultValue = "0") int clubCode, String name, String email, @RequestParam(value = "departmentCode", defaultValue = "0") int departmentCode, @RequestParam(value = "studentId", defaultValue = "0") int studentId, String phoneNumber, String address, String sex, boolean project, boolean cctv, String birthday) {
 
         System.out.println("=========================");
         System.out.println(clubCode);
@@ -181,48 +182,48 @@ public class UsrController {
         //입력 값 예외처리-----------------------------------------------------
 //        int clubCode int departmentCode, int studentId
         String message = "";
-        
-        if(clubCode == 0){
+
+        if (clubCode == 0) {
             message = "<script>alert('동아리 코드를 입력해 주세요.');location.href='join';</script>";
             return message;
-        }else if(name.trim().length() == 0){
+        } else if (name.trim().length() == 0) {
             message = "<script>alert('이름을 입력해 주세요.');location.href='join';</script>";
             return message;
-        }else if(email.trim().length() == 0){
+        } else if (email.trim().length() == 0) {
             message = "<script>alert('이메일을 입력해 주세요.');location.href='join';</script>";
             return message;
-        }else if(departmentCode == 0){
+        } else if (departmentCode == 0) {
             message = "<script>alert('힉과 코드를 입력해 주세요.');location.href='join';</script>";
             return message;
-        }else if(studentId == 0){
+        } else if (studentId == 0) {
             message = "<script>alert('학번을 입력해 주세요.');location.href='join';</script>";
             return message;
-        }else if(phoneNumber.trim().length() == 0){
+        } else if (phoneNumber.trim().length() == 0) {
             message = "<script>alert('전화번호를 입력해 주세요.');location.href='join';</script>";
             return message;
-        }else if(!phoneNumber.matches("[0-9]+")){
+        } else if (!phoneNumber.matches("[0-9]+")) {
             message = "<script>alert('전화번호는 숫자만 입력 가능 합니다.');location.href='join';</script>";
             return message;
-        }else if(phoneNumber.trim().length() < 11){
+        } else if (phoneNumber.trim().length() < 11) {
             message = "<script>alert('잘못된 전화번호 형식 입니다.');location.href='join';</script>";
             return message;
-        }else if(address.trim().length() == 0){
+        } else if (address.trim().length() == 0) {
             message = "<script>alert('주소를 입력해 주세요.');location.href='join';</script>";
             return message;
-        }else if(birthday.trim().length() == 0){
+        } else if (birthday.trim().length() == 0) {
             message = "<script>alert('날짜를 선택해 주세요.');location.href='join';</script>";
             return message;
         }
 
 
         //JoinResponse joinResponse = userService.join(clubCode, name, email, departmentCode, studentId, phoneNumber, address, sex,project, cctv);
-        String joinResponse = userService.join(birthday, clubCode, name, email, departmentCode, studentId, phoneNumber, address, sex,project, cctv);
+        String joinResponse = userService.join(birthday, clubCode, name, email, departmentCode, studentId, phoneNumber, address, sex, project, cctv);
 
         System.out.println(joinResponse);
 
-        if(joinResponse.equals("success")){
+        if (joinResponse.equals("success")) {
             message = "<script>alert('회원가입을 완료했습니다.');location.href='login';</script>";
-        }else if(joinResponse.equals("fail")){
+        } else if (joinResponse.equals("fail")) {
             message = "<script>alert('동아리 코드, 학과코드, 학번이 존재하는지 확인해 주세요.');location.href='join';</script>";
         }
 
@@ -234,26 +235,25 @@ public class UsrController {
     //사용자가 회원가입시 동아리 코드를 입력하고 학과 찾기를 클릭했을 경우 학과코드와 학과면을 List로 받아오는 요청
     @RequestMapping(value = "/fineDepartmentCode", produces = "application/json; charset=utf8", method = {RequestMethod.GET})
     @ResponseBody
-    public List<Map<String, Object>> findDepartmentCode(@RequestParam  int clubCode){
+    public List<Map<String, Object>> findDepartmentCode(@RequestParam int clubCode) {
 
-      List<Map<String, Object>> result = userService.findeDepartmentCode(clubCode);
+        List<Map<String, Object>> result = userService.findeDepartmentCode(clubCode);
 //      System.out.println(result);
 
-        
+
         return result;
 
     }
 
 
-
     @RequestMapping("/myInfo")
-    public String myInfo(){
+    public String myInfo() {
         return "myInfo";
     }
 
     @RequestMapping("/logout")
     @ResponseBody
-    public String logout(HttpServletRequest request){
+    public String logout(HttpServletRequest request) {
 
         HttpSession session = request.getSession(false);
 
@@ -262,13 +262,13 @@ public class UsrController {
 //        int user_id = (int)session.getAttribute("user_id");
 
         String message = "";
-        
+
         //세션을 삭제
         if (session != null) {
             session.invalidate();
             message = "<script>alert('로그아웃 되었습니다.');location.href='login';</script>";
             return message;
-        }else{
+        } else {
             message = "<script>alert('이미 로그아웃 되었습니다.');location.href='login';</script>";
             return message;
         }
@@ -281,15 +281,20 @@ public class UsrController {
     @RequestMapping("/refreshToken")
     @ResponseBody
     public void refreshToken(HttpServletRequest request) {
-         userService.refreshToken(request);
+        userService.refreshToken(request);
     }
 
 
-    //최근 회원 접속 정보 테스트
+    //최근 회원 접속 정보 테스트()
     @RequestMapping("/test/refreshToken")
-    @ResponseBody
-    public  void  Test(HttpServletRequest request) {
-        List<Map<String, Object>> test =  userService.recentLoginInfo(request);
+    public String Test(HttpServletRequest request, Model model) {
+
+        List<Map<String, Object>> test = userService.recentLoginInfo(request);
+        System.out.println(test);
+
+        model.addAttribute("test123", test);
+
+        return "notification.html";
     }
 
 

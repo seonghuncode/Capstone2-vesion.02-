@@ -1,12 +1,14 @@
 package com.ysh.capstoneTest1.usr.service;
 
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ysh.capstoneTest1.vo.LoginResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -29,7 +31,7 @@ public class UserService {
 
 
     //로그인 통신
-    public LoginResponse login(String loginId, String loginPw, HttpServletRequest request) throws Exception{ // userJoin이라는 리턴 받을 class를 만들어 주어야 된다
+    public LoginResponse login(String loginId, String loginPw, HttpServletRequest request, Model model) throws Exception{ // userJoin이라는 리턴 받을 class를 만들어 주어야 된다
 
         URI uri = UriComponentsBuilder.fromUriString("http://13.209.55.246:80")
                 .path("/api/login")
@@ -71,6 +73,7 @@ public class UserService {
             user.setAccess_token_end_at(result.getAccess_token_end_at());
             user.setMessage("success");
 
+
             //세션에 토큰값 저장, club_id, user_id 저장 -> 토큰 재발급 시 필요
             HttpSession session = request.getSession();
             String token = result.getAccess_token();
@@ -85,6 +88,24 @@ public class UserService {
             System.out.println("토큰 :  " + session.getAttribute("token"));
             System.out.println("club_id : " + session.getAttribute("club_id"));
             System.out.println("user_id : " + session.getAttribute("user_id"));
+
+
+
+//            //받은 최근 IP의 형태가 List<Map<String, Object>>의 형태를 반복문을 통해 각각을 추출하는 방법(데이터 잘 들어있는지 확인 용도)
+//            for (Map<String, Object> data : recentInfo) {
+//                String ip = (String) data.get("ip");
+//                String device = (String) data.get("device");
+//                String createdAt = (String) data.get("created_at");
+//
+//                // 추출된 값들을 사용하여 원하는 작업을 수행
+//                System.out.println("IP: " + ip);
+//                System.out.println("Device: " + device);
+//                System.out.println("Created At: " + createdAt);
+//                System.out.println("--------");
+//            }
+
+
+
         } catch (HttpClientErrorException ex) {
             // 실패 응답 처리
             String errorResponseBody = ex.getResponseBodyAsString();
@@ -392,7 +413,15 @@ public class UserService {
 
         HttpSession session = request.getSession();
 
-        String url = "http://13.209.55.246:80/api/clubs/1/users/4/loginInfomation";
+        //세션에 있는 url에 필요한 값을 변수에 담는다
+        int club_id = (int)session.getAttribute("club_id");
+        int user_id = (int)session.getAttribute("user_id");
+        System.out.println("=====세션에 있는 club_id, user_id======");
+        System.out.println("club_id : " + club_id);
+        System.out.println("user_id : " + user_id);
+
+        //String url = "http://13.209.55.246:80/api/clubs/1/users/4/loginInfomation";
+        String url = "http://13.209.55.246:80/api/clubs/"+ club_id +"/users/" + user_id + "/loginInfomation";
         String authToken = (String) session.getAttribute("token");
         System.out.println(authToken);
 
@@ -430,6 +459,7 @@ public class UserService {
             // 실패 응답 처리
             String errorResponseBody = ex.getResponseBodyAsString();
             //System.out.println("Failure:");
+            System.out.println("errorResonseBody");
             System.out.println(errorResponseBody);
 
             List<Map<String, Object>> resultList = new ArrayList<>();

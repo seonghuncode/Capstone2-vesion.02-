@@ -6,6 +6,7 @@
 <header th:fragment="sideBarFragment(pageName)">
 
 
+
     <!-- Sidebar --------------------------------------------------------------------------------------------------------------------------->
     <div id="sidebar">
         <div class="inner">
@@ -127,8 +128,18 @@
 
 
             <!-- 최근 로그인 정보 테이블 ---------------------------------------------------------------------------------------------->
-            <!-- Table -->
+            <div th:fragment="sideBarFragment(activeMenu)">
+                <!-- sideBar의 내용 -->
 
+                <!-- sidebarData를 사용하여 데이터 표시 -->
+                <div th:each="item : ${sidebarData}">
+                    <span th:text="${item.ip}"></span>
+                    <span th:text="${item.device}"></span>
+                    <span th:text="${item.created_at}"></span>
+                </div>
+            </div>
+
+            <!-- Table -->
             <div class="table-wrapper">
                 <header class="major">
                     <h2>최근 로그인 정보</h2>
@@ -160,7 +171,6 @@
                     </tbody>
                 </table>
             </div>
-
 
 
             <!-- Section(간단 설명) --------------------------------------------------------------------------------------------------->

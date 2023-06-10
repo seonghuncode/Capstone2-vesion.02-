@@ -1,14 +1,28 @@
 package com.ysh.capstoneTest1.page;
 
 
+import com.ysh.capstoneTest1.usr.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class pagesController {
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping("/notification")
-    public String notification(){
+    public String notification(HttpServletRequest request, Model model){
+
+        List<Map<String, Object>> data = userService.recentLoginInfo(request);
+        model.addAttribute("sidebarData", data);
+
         return "notification";
     }
 
