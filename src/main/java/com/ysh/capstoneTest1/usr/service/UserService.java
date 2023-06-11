@@ -40,7 +40,7 @@ public class UserService {
                 .encode()
                 .build()
                 .toUri();
-        System.out.println(uri.toString());
+//        System.out.println(uri.toString());
         //encode() : usl응 인코딩 하는 용도
 
 //        //LoginResponse :  응답 데이터를 매핑할 목적
@@ -85,9 +85,9 @@ public class UserService {
             int user_id = result.getUser_id();
             session.setAttribute("user_id", user_id);
 
-            System.out.println("토큰 :  " + session.getAttribute("token"));
-            System.out.println("club_id : " + session.getAttribute("club_id"));
-            System.out.println("user_id : " + session.getAttribute("user_id"));
+//            System.out.println("토큰 :  " + session.getAttribute("token"));
+//            System.out.println("club_id : " + session.getAttribute("club_id"));
+//            System.out.println("user_id : " + session.getAttribute("user_id"));
 
 
 
@@ -110,7 +110,7 @@ public class UserService {
             // 실패 응답 처리
             String errorResponseBody = ex.getResponseBodyAsString();
 //            System.out.println("Failure:");
-            System.out.println(errorResponseBody);
+//            System.out.println(errorResponseBody);
 
             //에러 메세지 에서 특정 부분 message만 꺼내서 변수에 담는다.
             ObjectMapper objectMapper = new ObjectMapper();
@@ -190,7 +190,7 @@ public class UserService {
                 .encode()
                 .build()
                 .toUri();
-        System.out.println(uri.toString());
+//        System.out.println(uri.toString());
 
         LoginResponse user = new LoginResponse();
         try {
@@ -200,7 +200,7 @@ public class UserService {
             LoginResponse result = response.getBody();
             // 성공 응답 처리
 //            System.out.println("Success:");
-            System.out.println(result);
+//            System.out.println(result);
 
 
             user.setUser_id(result.getUser_id());
@@ -211,7 +211,7 @@ public class UserService {
             // 실패 응답 처리
             String errorResponseBody = ex.getResponseBodyAsString();
 //            System.out.println("Failure:");
-            System.out.println(errorResponseBody);
+//            System.out.println(errorResponseBody);
             user.setMessage("fail");
         }
 
@@ -258,7 +258,7 @@ public class UserService {
                     "\"gender\": \""+sex+"\", \"phone\": [\""+phoneNumber+"\"], \"email\": \""+email+"\", \"address\": \""+address+"\", " +
                     "\"birthday\": \""+birthday+"\", \"cctv_consent\": "+cctv+", \"project_consent\": "+project+"}";
 
-            System.out.println("responseBody1" + requestBody);
+//            System.out.println("responseBody1" + requestBody);
 
             HttpEntity<String> entity = new HttpEntity<>(requestBody, headers);
 
@@ -268,7 +268,7 @@ public class UserService {
             // HTTP 응답 결과 가져오기
             String responseBody = response.getBody();
 
-            System.out.println("responseBody" + responseBody);
+//            System.out.println("responseBody" + responseBody);
 
             //성공할 경우
             result = "success";
@@ -276,7 +276,7 @@ public class UserService {
         } catch (HttpClientErrorException ex) {
             // 실패 응답 처리
             String errorResponseBody = ex.getResponseBodyAsString();
-            System.out.println("error" + errorResponseBody);
+//            System.out.println("error" + errorResponseBody);
             result = "fail";
         }
 
@@ -339,6 +339,7 @@ public class UserService {
 
 
 
+    //재발급 받은 토큰을 리턴해주는 방법
     public void refreshToken(HttpServletRequest request){
 
 
@@ -350,9 +351,9 @@ public class UserService {
         int user_id = (int)session.getAttribute("user_id");
 
 
-        System.out.println("토큰 :  " + session.getAttribute("token"));
-        System.out.println("club_id : " + session.getAttribute("club_id"));
-        System.out.println("user_id : " + session.getAttribute("user_id"));
+//        System.out.println("토큰 :  " + session.getAttribute("token"));
+//        System.out.println("club_id : " + session.getAttribute("club_id"));
+//        System.out.println("user_id : " + session.getAttribute("user_id"));
 
         URI uri = UriComponentsBuilder.fromUriString("http://13.209.55.246:80")
                 .path("/api/token")
@@ -362,7 +363,7 @@ public class UserService {
                 .build()
                 .toUri();
 
-        System.out.println(uri.toString());
+//        System.out.println(uri.toString());
 
         LoginResponse user = new LoginResponse();
         try {
@@ -372,7 +373,7 @@ public class UserService {
             LoginResponse result = response.getBody();
             // 성공 응답 처리
 //            System.out.println("Success:");
-            System.out.println(result);
+//            System.out.println(result);
 
             user.setClub_id(result.getClub_id());
             user.setUser_id(result.getUser_id());
@@ -395,12 +396,16 @@ public class UserService {
             user_id = result.getUser_id();
             session.setAttribute("user_id", user_id);
 
+//            System.out.println("재발급 받은 토큰1 : " + session.getAttribute("token"));
+
+
         } catch (HttpClientErrorException ex) {
             // 실패 응답 처리
             String errorResponseBody = ex.getResponseBodyAsString();
 //            System.out.println("Failure:");
-            System.out.println(errorResponseBody);
+//            System.out.println(errorResponseBody);
             user.setMessage("fail");
+            
         }
 
     }
@@ -411,16 +416,17 @@ public class UserService {
     //작업 : 진행중
     // : 현재 로그인 하고 -> 토큰값을 보내줄 경우 정상적인 해당 최근 접속 정보를 불러오는 것 까지 성공
     // : 수정 부분 : 1, 4 부분을 세션에 저장된 값을 변수에 담아 변수로 수정
-    public  List<Map<String, Object>>  recentLoginInfo(HttpServletRequest request){
+    public  List<Map<String, Object>>  recentLoginInfo(HttpServletRequest request) throws Exception{
 
         HttpSession session = request.getSession();
 
         //세션에 있는 url에 필요한 값을 변수에 담는다
         int club_id = (int)session.getAttribute("club_id");
         int user_id = (int)session.getAttribute("user_id");
-        System.out.println("=====세션에 있는 club_id, user_id======");
-        System.out.println("club_id : " + club_id);
-        System.out.println("user_id : " + user_id);
+//        System.out.println("=====세션에 있는 club_id, user_id======");
+//        System.out.println("club_id : " + club_id);
+//        System.out.println("user_id : " + user_id);
+//        System.out.println("기존 토큰 : " + session.getAttribute("token"));
 
 
 
@@ -428,14 +434,14 @@ public class UserService {
             //String url = "http://13.209.55.246:80/api/clubs/1/users/4/loginInfomation";
             String url = "http://13.209.55.246:80/api/clubs/"+ club_id +"/users/" + user_id + "/loginInfomation";
             String authToken = (String) session.getAttribute("token");
-            System.out.println(authToken);
+//            System.out.println(authToken);
 
             RestTemplate restTemplate = new RestTemplate();
             HttpHeaders headers = new HttpHeaders();
             headers.set(HttpHeaders.AUTHORIZATION, "Bearer " + authToken);
             headers.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
 
-            System.out.println(url.toString());
+//            System.out.println(url.toString());
 
             // HTTP GET 요청 보내기(List형식으로 학과. 학과 코드를 key,value형식으로 받는다.)
             RequestEntity<Void> requestEntity = new RequestEntity<>(headers, HttpMethod.GET, URI.create(url));
@@ -450,9 +456,9 @@ public class UserService {
                 String name = (String) map.get("name");
                 String code = (String) map.get("code");
             }
-            System.out.println("============================");
-            System.out.println(resultList);
-            System.out.println("============================");
+//            System.out.println("============================");
+//            System.out.println(resultList);
+//            System.out.println("============================");
 
             // 성공 응답 처리
             
@@ -462,15 +468,39 @@ public class UserService {
             // 실패 응답 처리
             String errorResponseBody = ex.getResponseBodyAsString();
             //System.out.println("Failure:");
-            System.out.println("errorResonseBody");
-            System.out.println(errorResponseBody);
+//            System.out.println("errorResonseBody");
+//            System.out.println(errorResponseBody);
 
             List<Map<String, Object>> resultList = new ArrayList<>();
             Map<String, Object> map = new HashMap<>();
             map.put("result", "fail");
 
-            // Map을 List에 추가
-            resultList.add(map);
+
+
+
+
+            //만약 토큰이 만료되어 난 오류로 "Token Expire"로 오게 되면 토큰을 재발급 받는 로직을 실행시키고 요청을 다시 한다
+            //에러 메세지 에서 특정 부분 message만 꺼내서 변수에 담는다.
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(errorResponseBody); //readTree에서 오류가 안나기 위해서는 throws Exception을 해주어야 된다.
+            String errorMessage = jsonNode.get("message").asText();
+//            System.out.println(errorMessage);
+
+            if(errorMessage.equals("Token Expire")){
+                //토큰 재발급
+//                System.out.println("토큰 말료로 인한 재발급을 진행하고 요청을 다시 보낸다");
+                refreshToken(request);
+
+//                System.out.println("재발급 받고 난 후의 토큰 : " + session.getAttribute("token"));
+
+                map.put("token_expire", "token_expire");
+
+                // Map을 List에 추가
+                resultList.add(map);
+
+            }
+
+
 
             return resultList;
         }

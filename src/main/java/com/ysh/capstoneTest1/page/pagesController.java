@@ -20,9 +20,28 @@ public class pagesController {
 
     //메인페이지
     @RequestMapping("/mainPage")
-    public String mainPage(HttpServletRequest request, Model model){
+    public String mainPage(HttpServletRequest request, Model model) throws  Exception{
 
-        List<Map<String, Object>> data = userService.recentLoginInfo(request);
+        List<Map<String, Object>> data = userService.recentLoginInfo(request) ;
+
+//        System.out.println("<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>");
+//        System.out.println(data);
+
+            Map<String, Object> resultMap = data.get(0); // 첫 번째 맵을 가져옴
+            if (resultMap.containsKey("token_expire")) {
+                Object resultValue = resultMap.get("token_expire");
+                if (resultValue instanceof String) {
+                    String result = (String) resultValue;
+                    // result 변수에 해당 값이 저장됨
+                    System.out.println("Result: " + result);
+                    if(result.equals("token_expire")){
+                        System.out.println(result);
+                        return "redirect:/mainPage";
+                    }
+                }
+            }
+
+
         model.addAttribute("sidebarData", data);
 
         return "mainPage";
