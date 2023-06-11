@@ -1,3 +1,4 @@
+//사용자가 학과 찾기 버튼을 클릭했을 경우의 로직-------------------------------------------------------------------------------
 $("#clubCodeDuplication").click(function () {
 
     var clubCode = $('#clubCode').val();
@@ -55,7 +56,60 @@ $("#clubCodeDuplication").click(function () {
     }
 
 
-    
-    
+})
+
+
+
+//사용자가 이메일 중복확인 버튼을 클릭했을 경우의 로직------------------------------------------------------------------------------------------------
+$("#emailDuplication").click(function () {
+
+    var clubCode = $('#clubCode').val();
+    var email = $('#email').val();
+
+    function success(){
+        $('#validEmail').text("사용 가능한 이메일 입니다.")
+        $( "#validEmail" ).css( "color", "blue" );
+    }
+    function fail(){
+        $('#validEmail').text("이미 존재하는 이메일 입니다.")
+        $( "#validEmail" ).css( "color", "red" );
+    }
+
+    // console.log(clubCode);
+    // console.log(email);
+
+    if(clubCode == ""){
+        alert("이메일 중복 확인을 위해 동아리 코드를 입력해 주세요.");
+    }else if(email == ""){
+        alert("이메일 중복 확인을 위해 이메일을 입력해 주세요.");
+    }else{
+
+        //동아리 코드를 받아 외부 서버랑 통신해서 해당 동아리 코드에 해당하는 학과 코드를 받아온다
+        $.ajax({
+            url: "/checkDuplicationEmail",
+            data: {"clubCode" : clubCode, "email" : email},  //data: info, JSON.stringify(info)
+            method: "get",
+            dataType: "json",   //dataType : "html",
+            contentType: "application/json; charset=utf-8",
+            success: function (res) {
+                // alert("success");
+                // console.log("controller에서 받은 데이터 ==>  ")
+                // console.log(res);
+
+                if(res.result == "success"){
+                    success();
+                }else if(res.result == "fail"){
+                    fail();
+                }
+
+            },
+            error: function () {
+                console.log("요청 또는 응답에 있어 문제가 발생했습니다.");
+                alert("error")
+            }
+        });
+
+    }
+
 
 })

@@ -30,7 +30,7 @@ public class UserService {
 
 
 
-    //로그인 통신
+    //로그인 통신----------------------------------------------------------------------------------------------------------------------------------
     public LoginResponse login(String loginId, String loginPw, HttpServletRequest request, Model model) throws Exception{ // userJoin이라는 리턴 받을 class를 만들어 주어야 된다
 
         URI uri = UriComponentsBuilder.fromUriString("http://13.209.55.246:80")
@@ -137,7 +137,7 @@ public class UserService {
     }
 
 
-    //아이디 찾기에 대한 통신
+    //아이디 찾기에 대한 통신----------------------------------------------------------------------------------------------------------------------
     public LoginResponse findId(int clubCode, String name, String email){
 
         URI uri = UriComponentsBuilder.fromUriString("http://13.209.55.246:80")
@@ -179,7 +179,7 @@ public class UserService {
 
 
 
-    //비밀번호 찾기에 대한 통신
+    //비밀번호 찾기에 대한 통신--------------------------------------------------------------------------------------------------------------------
     public LoginResponse findPw(int clubCode, String name, String studentId){
 
         URI uri = UriComponentsBuilder.fromUriString("http://13.209.55.246:80")
@@ -223,7 +223,7 @@ public class UserService {
 
 
 
-    //회원가입 통신
+    //회원가입 통신------------------------------------------------------------------------------------------------------------------------------------
     public String join(String birthday, int clubCode, String name, String email, int departmentCode, int studentId, String phoneNumber, String address, String sex, boolean project, boolean cctv) { // userJoin이라는 리턴 받을 class를 만들어 주어야 된다
 
         //리턴할 결과값
@@ -288,6 +288,7 @@ public class UserService {
     }
 
 
+    //동아리 코드를 통해 학과 코드를 찾는 통신 로직--------------------------------------------------------------------------------------------
     public List<Map<String, Object>> findeDepartmentCode(int clubCode){
 
         URI uri = UriComponentsBuilder.fromUriString("http://13.209.55.246:80")
@@ -334,6 +335,57 @@ public class UserService {
             resultList.add(map);
 
             return resultList;
+        }
+    }
+
+
+
+    //이메일 번호가 이미 데이터베이스에 존재하는지 체크 하는 통신 로직---------------------------------------------------------------------------------
+    public Map<String, Object> checkDuplicationEmail(int clubCode, String email){
+
+        URI uri = UriComponentsBuilder.fromUriString("http://13.209.55.246:80")
+                .path("/api/emailDuplicateCheck")
+                .queryParam("club_code", clubCode)
+                .queryParam("email", email)
+                .encode()
+                .build()
+                .toUri();
+//        System.out.println(uri.toString());
+
+
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+            // HTTP GET 요청 보내기(List형식으로 학과. 학과 코드를 key,value형식으로 받는다.)
+            ResponseEntity<Map> response = restTemplate.getForEntity(uri, Map.class);
+
+            //resultList에 응답 받은 값을 넣는다
+            Map<String, Object> resultList = response.getBody();
+
+            Map<String, Object> map = new HashMap<>();
+            map.put("result", "success");
+
+//            System.out.println("============================");
+//            System.out.println(resultList);
+//            System.out.println("============================");
+
+            // 성공 응답 처리
+
+
+            return resultList;
+
+        } catch (HttpClientErrorException ex) {
+            // 실패 응답 처리
+            String errorResponseBody = ex.getResponseBodyAsString();
+            System.out.println("Failure:");
+            System.out.println(errorResponseBody);
+
+
+            Map<String, Object> map = new HashMap<>();
+            map.put("result", "fail");
+
+
+
+            return map;
         }
     }
 

@@ -244,6 +244,18 @@ public class UsrController {
     }
 
 
+    //이메일 중복에 대한 내용을 체크 하는 부분
+    @RequestMapping(value = "/checkDuplicationEmail", produces = "application/json; charset=utf8", method = {RequestMethod.GET})
+    @ResponseBody
+    public Map<String, Object> checkDuplicationEmail(@RequestParam(value = "clubCode", defaultValue = "0") int clubCode, @RequestParam String email) {
+
+        //이메일 중복 여부를 통신해서 값을 받아온다(success : 중복된 값 없음 , fail : 이미 존재하는 이멩리)
+        Map<String, Object> result = userService.checkDuplicationEmail(clubCode, email);
+//      System.out.println(result);
+        return result;
+    }
+
+
     @RequestMapping("/myInfo")
     public String myInfo() {
         return "myInfo";
