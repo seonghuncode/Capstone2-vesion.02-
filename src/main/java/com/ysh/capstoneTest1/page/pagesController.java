@@ -21,6 +21,7 @@ public class pagesController {
     //메인페이지
     @RequestMapping("/mainPage")
     public String mainPage(HttpServletRequest request, Model model){
+
         List<Map<String, Object>> data = userService.recentLoginInfo(request);
         model.addAttribute("sidebarData", data);
 

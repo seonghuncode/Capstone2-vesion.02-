@@ -380,9 +380,11 @@ public class UserService {
             user.setAccess_token_end_at(result.getAccess_token_end_at());
             user.setMessage("success");
 
-            //세션 초기화 후다시 저장
+            //세션에 기존 토큰 삭제 후 다시 저장
             //세션에 토큰값 저장, club_id, user_id 저장 -> 토큰 재발급 시 필요
-            session.invalidate();
+            session.removeAttribute("token");
+            session.removeAttribute("club_id");
+            session.removeAttribute("user_id");
 
             token = result.getAccess_token();
             session.setAttribute("token", token);
@@ -420,20 +422,21 @@ public class UserService {
         System.out.println("club_id : " + club_id);
         System.out.println("user_id : " + user_id);
 
-        //String url = "http://13.209.55.246:80/api/clubs/1/users/4/loginInfomation";
-        String url = "http://13.209.55.246:80/api/clubs/"+ club_id +"/users/" + user_id + "/loginInfomation";
-        String authToken = (String) session.getAttribute("token");
-        System.out.println(authToken);
-
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set(HttpHeaders.AUTHORIZATION, "Bearer " + authToken);
-        headers.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
-
-        System.out.println(url.toString());
 
 
         try {
+            //String url = "http://13.209.55.246:80/api/clubs/1/users/4/loginInfomation";
+            String url = "http://13.209.55.246:80/api/clubs/"+ club_id +"/users/" + user_id + "/loginInfomation";
+            String authToken = (String) session.getAttribute("token");
+            System.out.println(authToken);
+
+            RestTemplate restTemplate = new RestTemplate();
+            HttpHeaders headers = new HttpHeaders();
+            headers.set(HttpHeaders.AUTHORIZATION, "Bearer " + authToken);
+            headers.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
+
+            System.out.println(url.toString());
+
             // HTTP GET 요청 보내기(List형식으로 학과. 학과 코드를 key,value형식으로 받는다.)
             RequestEntity<Void> requestEntity = new RequestEntity<>(headers, HttpMethod.GET, URI.create(url));
             ResponseEntity<List> responseEntity = restTemplate.exchange(requestEntity, List.class);
