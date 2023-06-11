@@ -146,7 +146,13 @@
     <!--    <header th:replace="fragment/sideBar :: sideBarFragment('메인화면')"></header>-->
 
     <header th:replace="fragment/sideBar :: sideBarFragment('메인화면')">
+        <!-- 로그인 성공하고 메인 페이지로 넘기면서 최근 접속 데이터를 사이드 바로 넘겨주는 부분 -->
         <div th:with="sidebarData=${sidebarData}">
+            <!-- sidebarData를 sideBar.html로 전달 -->
+        </div>
+
+        <!-- 로그인 성공하고 메인 페이지로 넘기면서 생일 데이터를 사이드 바로 넘겨주는 부분 -->
+        <div th:with="sidebarData=${getBirthdayInfo}">
             <!-- sidebarData를 sideBar.html로 전달 -->
         </div>
     </header>

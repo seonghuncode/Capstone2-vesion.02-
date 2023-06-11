@@ -1,6 +1,7 @@
 package com.ysh.capstoneTest1.page;
 
 
+import com.ysh.capstoneTest1.usr.service.SideBarService;
 import com.ysh.capstoneTest1.usr.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,32 +18,45 @@ public class pagesController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private SideBarService sideBarService;
+
 
     //메인페이지
     @RequestMapping("/mainPage")
     public String mainPage(HttpServletRequest request, Model model) throws  Exception{
 
-        List<Map<String, Object>> data = userService.recentLoginInfo(request) ;
+        //최근 로그인 정보에 대해 통신 하고 받아오는 부분------------------------------------
+        List<Map<String, Object>> data = sideBarService.recentLoginInfo(request) ;
+        model.addAttribute("sidebarData", data);
 
 //        System.out.println("<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>");
 //        System.out.println(data);
 
+        //생일 정보를 가지고 오는 부분-------------------------------------------------------
+        List<Map<String, Object>> data2 = sideBarService.getBirthdayInfo(request) ;
+        model.addAttribute("getBirthdayInfo", data2);
+
+
+        //토큰이 만료 되었다면 현재 페이지 재로딩 하는 부분
             Map<String, Object> resultMap = data.get(0); // 첫 번째 맵을 가져옴
             if (resultMap.containsKey("token_expire")) {
                 Object resultValue = resultMap.get("token_expire");
                 if (resultValue instanceof String) {
                     String result = (String) resultValue;
                     // result 변수에 해당 값이 저장됨
-                    System.out.println("Result: " + result);
+//                    System.out.println("Result: " + result);
                     if(result.equals("token_expire")){
-                        System.out.println(result);
+//                        System.out.println(result);
                         return "redirect:/mainPage";
                     }
                 }
             }
 
 
-        model.addAttribute("sidebarData", data);
+
+
+
 
         return "mainPage";
     }
