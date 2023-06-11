@@ -80,15 +80,15 @@
                 <nav aria-label="Page navigation example">
                     <ul class="pagination" style="padding: 0px; justify-content: right">
                         <li class="page-item" style="padding: 0px">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
+<!--                            <a class="page-link" href="#" aria-label="Previous">-->
+<!--                                <span aria-hidden="true">&laquo;</span>-->
+<!--                            </a>-->
                         </li>
-                        <li class="page-item"><a class="page-link" href="#">5월</a></li>
+                        <li class="page-item"><a class="page-link" href="#" th:text=" '현재월 : ' + ${#strings.substring(getBirthdayInfo[0].birth_date,6, 7)}">현재월이 표시됨</a></li>
                         <li class="page-item" style="padding: 0px">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
+<!--                            <a class="page-link" href="#" aria-label="Next">-->
+<!--                                <span aria-hidden="true">&raquo;</span>-->
+<!--                            </a>-->
                         </li>
                     </ul>
                 </nav>
