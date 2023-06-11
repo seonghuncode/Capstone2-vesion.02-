@@ -281,13 +281,9 @@
         </div>
     </div>
     <!-- 왼쪽 사이드 바를 불러오는 코드 -->
-<!--    <header th:replace="fragment/sideBar :: sideBarFragment('메인화면')"></header>-->
+    <header th:replace="fragment/sideBar :: sideBarFragment('메인화면')"></header>
 
-    <header th:replace="fragment/sideBar :: sideBarFragment('메인화면')">
-        <div th:with="sidebarData=${sidebarData}">
-            <!-- sidebarData를 sideBar.html로 전달 -->
-        </div>
-    </header>
+
 
 
 </div>

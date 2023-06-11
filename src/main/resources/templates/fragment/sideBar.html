@@ -6,7 +6,6 @@
 <header th:fragment="sideBarFragment(pageName)">
 
 
-
     <!-- Sidebar --------------------------------------------------------------------------------------------------------------------------->
     <div id="sidebar">
         <div class="inner">
@@ -22,9 +21,10 @@
             <nav id="menu">
                 <header class="major" style="margin-bottom: 30px">
                     <h2 style="display: inline">Menu</h2>
-                    <h2 style="border-bottom: solid 1px white; float: right"><a href="logout" >로그아웃</a></h2>
+                    <h2 style="border-bottom: solid 1px white; float: right"><a href="logout">로그아웃</a></h2>
                 </header>
                 <ul>
+                    <li><a href="mainPage">메인</a></li>
                     <li><a href="notification">공지</a></li>
                     <li><a href="rules">규칙</a></li>
                     <li><a href="organizationalChart">조직도</a></li>
@@ -77,21 +77,21 @@
 
 
                 <!-- 생일 월을 증가, 감소 하는 버튼 ------------------------------------------------------------------------------------------------>
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination" style="padding: 0px; justify-content: right" >
-                            <li class="page-item" style="padding: 0px">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">5월</a></li>
-                            <li class="page-item" style="padding: 0px">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination" style="padding: 0px; justify-content: right">
+                        <li class="page-item" style="padding: 0px">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">5월</a></li>
+                        <li class="page-item" style="padding: 0px">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
 
 
                 <table class="table table-sm" style="text-align: center">
@@ -126,50 +126,51 @@
             </section>
 
 
-
             <!-- 최근 로그인 정보 테이블 ---------------------------------------------------------------------------------------------->
-            <div th:fragment="sideBarFragment(activeMenu)">
-                <!-- sideBar의 내용 -->
+            <!--
+             최근 로그인을 불러오는 순서
+             1. 로그인 진행
+             2. 로그인 성공시 controller에서 mainPage로 model.addAtrribuute로 최근 로그인 정보 통신으로 받은 데이터 같이 넘겨주기
+             3. 메인페이지 에서 하단 부분 사이드바 불러오는  부분에 해당 데이터를 사이드 바에서 읽을 수 있도록 추가해서 적어준다
+             4. 아래 처럼 불러와 사용
+             (빨간줄 : 값이 아직 들어있는게 아니기 때문에 빈 값이 들어올 수 있기 때문???)
+             -->
+            <!--            <div th:fragment="sideBarFragment(activeMenu)">-->
+            <!--                &lt;!&ndash; sideBar의 내용 &ndash;&gt;-->
 
-                <!-- sidebarData를 사용하여 데이터 표시 -->
-                <div th:each="item : ${sidebarData}">
-                    <span th:text="${item.ip}"></span>
-                    <span th:text="${item.device}"></span>
-                    <span th:text="${item.created_at}"></span>
-                </div>
-            </div>
+            <!--                &lt;!&ndash; sidebarData를 사용하여 데이터 표시 &ndash;&gt;-->
+            <!--                <div th:each="item : ${sidebarData}">-->
+            <!--                    <span th:text="${item.ip}"></span>-->
+            <!--                    <span th:text="${item.device}"></span>-->
+            <!--                    <span th:text="${item.created_at}"></span>-->
+            <!--                </div>-->
+            <!--            </div>-->
 
             <!-- Table -->
-            <div class="table-wrapper">
-                <header class="major">
-                    <h2>최근 로그인 정보</h2>
-                </header>
-                <table>
-                    <thead>
-                    <tr>
-                        <th style="text-align: center">일시</th>
-                        <th style="text-align: center">IP</th>
-                        <th style="text-align: center">접속기기</th>
-                    </tr>
-                    </thead>
-                    <tbody style="text-align: center">
-                    <tr>
-                        <td>2023-05-05</td>
-                        <td>111.122.33</td>
-                        <td>PC</td>
-                    </tr>
-                    <tr>
-                        <td>2023-05-06</td>
-                        <td>111.122.33</td>
-                        <td>PC</td>
-                    </tr>
-                    <tr>
-                        <td>2023-05-07</td>
-                        <td>111.122.33</td>
-                        <td>PC</td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div th:fragment="sideBarFragment(activeMenu)">
+                <div class="table-wrapper">
+                    <header class="major">
+                        <h2>최근 로그인 정보</h2>
+                    </header>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th style="text-align: center">일시</th>
+                            <th style="text-align: center">IP</th>
+                            <th style="text-align: center">접속기기</th>
+                        </tr>
+                        </thead>
+                        <div th:each="item : ${sidebarData}">
+                            <tbody style="text-align: center">
+                            <tr>
+                                <td th:text="${#strings.substring(item.created_at,0, 11)}"></td> <!-- 시간 자르고 날짜만 보여주기 -->
+                                <td th:text="${item.ip}"></td>
+                                <td th:text="${item.device}"></td>
+                            </tr>
+                            </tbody>
+                        </div>
+                    </table>
+                </div>
             </div>
 
 

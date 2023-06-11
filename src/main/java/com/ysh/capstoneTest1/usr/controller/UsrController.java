@@ -57,9 +57,7 @@ public class UsrController {
         } else if (loginPw.trim().length() == 0) {
             message = "<script>alert('비밀번호를 입력해 주세요.');location.href='login';</script>";
         } else if (loginResponse.getMessage().equals("success")) {
-            message = "<script>alert('로그인 성공');location.href='notification';</script>";
-
-            //Test(request, model);
+            message = "<script>alert('로그인 성공');location.href='mainPage';</script>";
         } else if (loginResponse.getMessage().equals("fail")) {
             message = "<script>alert('아이디 비밀번호가 일치 하지 않습니다.');location.href='login';</script>";
         }
@@ -285,17 +283,17 @@ public class UsrController {
     }
 
 
-    //최근 회원 접속 정보 테스트()
-    @RequestMapping("/test/refreshToken")
-    public String Test(HttpServletRequest request, Model model) {
-
-        List<Map<String, Object>> test = userService.recentLoginInfo(request);
-        System.out.println(test);
-
-        model.addAttribute("test123", test);
-
-        return "notification.html";
-    }
+//    //최근 회원 접속 정보 테스트()
+//    @RequestMapping("/test/refreshToken")
+//    public String Test(HttpServletRequest request, Model model) {
+//
+//        List<Map<String, Object>> test = userService.recentLoginInfo(request);
+//        System.out.println(test);
+//
+//        model.addAttribute("test123", test);
+//
+//        return "notification.html";
+//    }
 
 
 }

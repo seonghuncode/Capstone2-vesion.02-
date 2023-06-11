@@ -17,14 +17,21 @@ public class pagesController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/notification")
-    public String notification(HttpServletRequest request, Model model){
 
+    //메인페이지
+    @RequestMapping("/mainPage")
+    public String mainPage(HttpServletRequest request, Model model){
         List<Map<String, Object>> data = userService.recentLoginInfo(request);
         model.addAttribute("sidebarData", data);
 
+        return "mainPage";
+    }
+
+    @RequestMapping("/notification")
+    public String notification(){
         return "notification";
     }
+    
 
     @RequestMapping("/notificationModify")
     public String notificationModify(){
