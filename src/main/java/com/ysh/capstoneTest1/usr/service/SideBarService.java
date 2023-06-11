@@ -150,9 +150,9 @@ public class SideBarService {
                 String name = (String) map.get("name");
                 String code = (String) map.get("code");
             }
-            System.out.println("============================");
-            System.out.println(resultList);
-            System.out.println("============================");
+//            System.out.println("============================");
+//            System.out.println(resultList);
+//            System.out.println("============================");
 
             // 성공 응답 처리
 
@@ -174,7 +174,7 @@ public class SideBarService {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(errorResponseBody); //readTree에서 오류가 안나기 위해서는 throws Exception을 해주어야 된다.
             String errorMessage = jsonNode.get("message").asText();
-            System.out.println(errorMessage);
+//            System.out.println(errorMessage);
 
             if (errorMessage.equals("Token Expire")) {
                 //토큰 재발급
