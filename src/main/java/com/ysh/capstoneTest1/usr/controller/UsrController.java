@@ -256,6 +256,18 @@ public class UsrController {
     }
 
 
+    //학번이 이미 존재하는 학번인지 확인하는 로직--------------------------------------------------------------------------------------------------------
+    @RequestMapping(value = "/checkDuplicationStudentId", produces = "application/json; charset=utf8", method = {RequestMethod.GET})
+    @ResponseBody
+    public Map<String, Object> checkDuplicationStudentId(@RequestParam(value = "clubCode", defaultValue = "0") int clubCode, @RequestParam String studentId) {
+
+        //이메일 중복 여부를 통신해서 값을 받아온다(success : 중복된 값 없음 , fail : 이미 존재하는 이멩리)
+        Map<String, Object> result = userService.checkDuplicationStudentId(clubCode, studentId);
+//      System.out.println(result);
+        return result;
+    }
+
+
     @RequestMapping("/myInfo")
     public String myInfo() {
         return "myInfo";

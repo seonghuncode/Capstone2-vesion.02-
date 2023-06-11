@@ -370,7 +370,6 @@ public class UserService {
 
             // 성공 응답 처리
 
-
             return resultList;
 
         } catch (HttpClientErrorException ex) {
@@ -379,11 +378,54 @@ public class UserService {
             System.out.println("Failure:");
             System.out.println(errorResponseBody);
 
-
             Map<String, Object> map = new HashMap<>();
             map.put("result", "fail");
 
+            return map;
+        }
+    }
 
+
+    //학번이 이미 데이터베이스에 존재하는지 체크 하는 통신 로직---------------------------------------------------------------------------------
+    public Map<String, Object> checkDuplicationStudentId(int clubCode, String studentId){
+
+        URI uri = UriComponentsBuilder.fromUriString("http://13.209.55.246:80")
+                .path("/api/studentIdDuplicateCheck")
+                .queryParam("club_code", clubCode)
+                .queryParam("student_id", studentId)
+                .encode()
+                .build()
+                .toUri();
+//        System.out.println(uri.toString());
+
+
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+            // HTTP GET 요청 보내기(List형식으로 학과. 학과 코드를 key,value형식으로 받는다.)
+            ResponseEntity<Map> response = restTemplate.getForEntity(uri, Map.class);
+
+            //resultList에 응답 받은 값을 넣는다
+            Map<String, Object> resultList = response.getBody();
+
+            Map<String, Object> map = new HashMap<>();
+            map.put("result", "success");
+
+//            System.out.println("============================");
+//            System.out.println(resultList);
+//            System.out.println("============================");
+
+            // 성공 응답 처리
+
+            return resultList;
+
+        } catch (HttpClientErrorException ex) {
+            // 실패 응답 처리
+            String errorResponseBody = ex.getResponseBodyAsString();
+//            System.out.println("Failure:");
+//            System.out.println(errorResponseBody);
+
+            Map<String, Object> map = new HashMap<>();
+            map.put("result", "fail");
 
             return map;
         }

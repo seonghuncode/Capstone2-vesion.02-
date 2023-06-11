@@ -113,3 +113,60 @@ $("#emailDuplication").click(function () {
 
 
 })
+
+
+
+//사용자가 학번 중복확인을 위해 중복확인 버튼을 클릭했을 경우-------------------------------------------------------------------------------------------
+//사용자가 이메일 중복확인 버튼을 클릭했을 경우의 로직------------------------------------------------------------------------------------------------
+$("#studentIdDuplication").click(function () {
+
+    var clubCode = $('#clubCode').val();
+    var studentId = $('#studentId').val();
+
+    function success(){
+        $('#validStudentId').text("사용 가능한 학번 입니다.")
+        $( "#validStudentId" ).css( "color", "blue" );
+    }
+    function fail(){
+        $('#validStudentId').text("이미 존재하는 학번 입니다.")
+        $( "#validStudentId" ).css( "color", "red" );
+    }
+
+    // console.log(clubCode);
+    // console.log(email);
+
+    if(clubCode == ""){
+        alert("존재 하는 학번인지 확인 하기 위해서는 동아리 코드를 입력해 주세요.");
+    }else if(studentId == ""){
+        alert("존재하는 학번인지 확인을 위해서는 학번을 입력해 주세요.");
+    }else{
+
+        //동아리 코드를 받아 외부 서버랑 통신해서 해당 동아리 코드에 해당하는 학과 코드를 받아온다
+        $.ajax({
+            url: "/checkDuplicationStudentId",
+            data: {"clubCode" : clubCode, "studentId" : studentId},  //data: info, JSON.stringify(info)
+            method: "get",
+            dataType: "json",   //dataType : "html",
+            contentType: "application/json; charset=utf-8",
+            success: function (res) {
+                // alert("success");
+                // console.log("controller에서 받은 데이터 ==>  ")
+                // console.log(res);
+
+                if(res.result == "success"){
+                    success();
+                }else if(res.result == "fail"){
+                    fail();
+                }
+
+            },
+            error: function () {
+                console.log("요청 또는 응답에 있어 문제가 발생했습니다.");
+                alert("error")
+            }
+        });
+
+    }
+
+
+})
