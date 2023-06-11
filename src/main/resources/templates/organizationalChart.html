@@ -34,10 +34,17 @@
                 <div class="chart-box">
                     <div id="chart_div"></div>
                 </div>
+
+                <!-- controller에서 받은 데이터를 외부 자바스크립트에서 사용하기 위해서는 변수에 담어 scipt태그에서 정의를 해주어야 된다 -->
+                <script type="text/javascript" th:inline="javascript">
+                    var test2 = [[${oraganization}]];
+                </script>
                 <!-- 차트 라이브러리 불러오기 -->
                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                 <!-- 차트 가공 하여 보여주는 코드 -->
                 <script src="/assets/js/organizationChart.js"></script>
+                <script src="https://www.gstatic.com/charts/loader.js"></script>
+
 
 
                 <!--                &lt;!&ndash; Content &ndash;&gt;-->

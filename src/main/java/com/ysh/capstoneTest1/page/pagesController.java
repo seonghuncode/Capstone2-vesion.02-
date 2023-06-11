@@ -175,6 +175,12 @@ public class pagesController {
         }
 
 
+        //조직도에 대한 내용 외부 서버 에서 불러오기
+        List<Map<String, Object>> oraganization = pagesService.getOrganizationChart(request) ;
+        System.out.println(data2);
+        model.addAttribute("oraganization", oraganization);
+
+
         return "organizationalChart";
     }
 
