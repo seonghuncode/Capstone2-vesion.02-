@@ -85,6 +85,13 @@ public class UserService {
             int user_id = result.getUser_id();
             session.setAttribute("user_id", user_id);
 
+            //반약 팀장 까지 수정 권한을 줄 경우 else if로 팀장일 경우도 추가
+            if(result.getRank().equals("방장")){
+                session.setAttribute("authority", "관리자");
+            }else{
+                session.setAttribute("authority", "일반회원");
+            }
+
 //            System.out.println("토큰 :  " + session.getAttribute("token"));
 //            System.out.println("club_id : " + session.getAttribute("club_id"));
 //            System.out.println("user_id : " + session.getAttribute("user_id"));

@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 public class LoginResponse {
     private int club_id;
     private int user_id;
+    private String rank;
     private String access_token;
     private String access_token_end_at;
 

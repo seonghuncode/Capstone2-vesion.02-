@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -47,6 +48,12 @@ public class pagesController {
 //        System.out.println("/////////////////////////");
 //        System.out.println(emergencyInfo);
         model.addAttribute("emergencyInfo", emergencyInfo);
+
+        //현재 로그인 하면서 세션에 저장된 관리자 권한을 넘겨주는 부분
+        HttpSession session = request.getSession();
+        String authority = (String) session.getAttribute("authority");
+        model.addAttribute("authority", authority);
+//        System.out.println(authority);
 
 
         //토큰이 만료 되었다면 현재 페이지 재로딩 하는 부분
@@ -86,6 +93,11 @@ public class pagesController {
 //        System.out.println("/////////////////////////");
 //        System.out.println(emergencyInfo);
         model.addAttribute("emergencyInfo", emergencyInfo);
+
+        //현재 로그인 하면서 세션에 저장된 관리자 권한을 넘겨주는 부분
+        HttpSession session = request.getSession();
+        String authority = (String) session.getAttribute("authority");
+        model.addAttribute("authority", authority);
 
 
         //토큰이 만료 되었다면 현재 페이지 재로딩 하는 부분
@@ -137,6 +149,11 @@ public class pagesController {
 //        System.out.println(emergencyInfo);
         model.addAttribute("emergencyInfo", emergencyInfo);
 
+        //현재 로그인 하면서 세션에 저장된 관리자 권한을 넘겨주는 부분
+        HttpSession session = request.getSession();
+        String authority = (String) session.getAttribute("authority");
+        model.addAttribute("authority", authority);
+
 
         //토큰이 만료 되었다면 현재 페이지 재로딩 하는 부분
         Map<String, Object> resultMap = data.get(0); // 첫 번째 맵을 가져옴
@@ -181,6 +198,11 @@ public class pagesController {
 //        System.out.println("/////////////////////////");
 //        System.out.println(emergencyInfo);
         model.addAttribute("emergencyInfo", emergencyInfo);
+
+        //현재 로그인 하면서 세션에 저장된 관리자 권한을 넘겨주는 부분
+        HttpSession session = request.getSession();
+        String authority = (String) session.getAttribute("authority");
+        model.addAttribute("authority", authority);
 
 
         //토큰이 만료 되었다면 현재 페이지 재로딩 하는 부분
@@ -233,6 +255,11 @@ public class pagesController {
 //        System.out.println(emergencyInfo);
         model.addAttribute("emergencyInfo", emergencyInfo);
 
+        //현재 로그인 하면서 세션에 저장된 관리자 권한을 넘겨주는 부분
+        HttpSession session = request.getSession();
+        String authority = (String) session.getAttribute("authority");
+        model.addAttribute("authority", authority);
+
 
         //토큰이 만료 되었다면 현재 페이지 재로딩 하는 부분
         Map<String, Object> resultMap = data.get(0); // 첫 번째 맵을 가져옴
@@ -254,16 +281,16 @@ public class pagesController {
     }
 
 
-    //조직도에 대한 정보를 받아오는 부분
-    @RequestMapping("/test/getOrganizationChart")
-    @ResponseBody
-    public String getOrganizationChart(HttpServletRequest request) throws Exception {
-        List<Map<String, Object>> data2 = pagesService.getOrganizationChart(request) ;
-        System.out.println(data2);
-
-
-        return "sds";
-    }
+//    //조직도에 대한 정보를 받아오는 부분
+//    @RequestMapping("/test/getOrganizationChart")
+//    @ResponseBody
+//    public String getOrganizationChart(HttpServletRequest request) throws Exception {
+//        List<Map<String, Object>> data2 = pagesService.getOrganizationChart(request) ;
+//        System.out.println(data2);
+//
+//
+//        return "sds";
+//    }
 
 
 

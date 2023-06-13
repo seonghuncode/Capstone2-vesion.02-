@@ -18,7 +18,8 @@
             <!--            </section>-->
 
             <!-- Menu바  ---------------------------------------------------------------------------------------------------------------->
-            <nav id="menu" style="border-bottom: solid 0px;"> <!-- border-bottom: solid 0px; : 메뉴 추가하는 플러스 아이콘 아래 밑줄 생기는 것 제거 -->
+            <nav id="menu" style="border-bottom: solid 0px;">
+                <!-- border-bottom: solid 0px; : 메뉴 추가하는 플러스 아이콘 아래 밑줄 생기는 것 제거 -->
                 <header class="major" style="margin-bottom: 30px">
                     <h2 style="display: inline">Menu</h2>
                     <h2 style="border-bottom: solid 1px white; float: right"><a href="logout">로그아웃</a></h2>
@@ -27,30 +28,45 @@
                 <ul>
                     <li style="display: inline">
                         <a href="mainPage" style="display: inline">메인</a>
-                        <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
-                        <a href="#" style="display: inline; float: right"><i class="bi bi-trash">&nbsp;&nbsp;</i></a>
+                        <div th:if="${authority == '관리자'}" style="display: inline;">
+                            <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
+                            <a href="#" style="display: inline; float: right"><i
+                                    class="bi bi-trash">&nbsp;&nbsp;</i></a>
+                        </div>
                     </li>
                     <li>
                         <a href="notification" style="display: inline">공지</a>
-                        <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
-                        <a href="#" style="display: inline; float: right"><i class="bi bi-trash">&nbsp;&nbsp;</i></a>
+                        <div th:if="${authority == '관리자'}" style="display: inline;">
+                            <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
+                            <a href="#" style="display: inline; float: right"><i class="bi bi-trash">  &nbsp;</i></a>
+                        </div>
                     </li>
                     <li>
                         <a href="rules" style="display: inline">규칙</a>
-                        <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
-                        <a href="#" style="display: inline; float: right"><i class="bi bi-trash">&nbsp;&nbsp;</i></a>
+                        <div th:if="${authority == '관리자'}" style="display: inline;">
+                            <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
+                            <a href="#" style="display: inline; float: right"><i
+                                    class="bi bi-trash">&nbsp;&nbsp;</i></a>
+                        </div>
                     </li>
                     <li>
                         <a href="organizationalChart" style="display: inline">조직도</a>
-                        <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
-                        <a href="#" style="display: inline; float: right"><i class="bi bi-trash">&nbsp;&nbsp;</i></a>
+                        <div th:if="${authority == '관리자'}" style="display: inline;">
+                            <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
+                            <a href="#" style="display: inline; float: right"><i
+                                    class="bi bi-trash">&nbsp;&nbsp;</i></a>
+                        </div>
                     </li>
                     <li>
                         <a href="moneyHistory" style="display: inline">회비내역</a>
-                        <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
-                        <a href="#" style="display: inline; float: right"><i class="bi bi-trash">&nbsp;&nbsp;</i></a>
+                        <div th:if="${authority == '관리자'}" style="display: inline;">
+                            <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
+                            <a href="#" style="display: inline; float: right"><i
+                                    class="bi bi-trash">&nbsp;&nbsp;</i></a>
+                        </div>
                     </li>
-                    <li><a href="#" style="float: right"><i class="bi bi-plus-circle fs-2" ></i></a></li> <!-- 추가 번튼 -->
+                    <li th:if="${authority == '관리자'}"><a href="#" style="float: right"><i
+                            class="bi bi-plus-circle fs-2"></i></a></li> <!-- 추가 번튼 -->
                     <!--										<li>-->   <!-- 메뉴텝에 버튼 추가시 필요 -->
                     <!--											<span class="opener">Submenu</span>-->
                     <!--											<ul>-->
@@ -102,38 +118,40 @@
                 <nav aria-label="Page navigation example">
                     <ul class="pagination" style="padding: 0px; justify-content: right">
                         <li class="page-item" style="padding: 0px">
-<!--                            <a class="page-link" href="#" aria-label="Previous">-->
-<!--                                <span aria-hidden="true">&laquo;</span>-->
-<!--                            </a>-->
+                            <!--                            <a class="page-link" href="#" aria-label="Previous">-->
+                            <!--                                <span aria-hidden="true">&laquo;</span>-->
+                            <!--                            </a>-->
                         </li>
-                        <li class="page-item"><a class="page-link" href="#" th:text=" '현재월 : ' + ${#strings.substring(getBirthdayInfo[0].birth_date,6, 7)}">현재월이 표시됨</a></li>
+                        <li class="page-item"><a class="page-link" href="#"
+                                                 th:text=" '현재월 : ' + ${#strings.substring(getBirthdayInfo[0].birth_date,6, 7)}">현재월이
+                            표시됨</a></li>
                         <li class="page-item" style="padding: 0px">
-<!--                            <a class="page-link" href="#" aria-label="Next">-->
-<!--                                <span aria-hidden="true">&raquo;</span>-->
-<!--                            </a>-->
+                            <!--                            <a class="page-link" href="#" aria-label="Next">-->
+                            <!--                                <span aria-hidden="true">&raquo;</span>-->
+                            <!--                            </a>-->
                         </li>
                     </ul>
                 </nav>
 
                 <div th:fragment="sideBarFragment(activeMenu)">
-                <table class="table table-sm" style="text-align: center">
-                    <thead>
-                    <tr>
-                        <th style="text-align: center" scope="col">날짜</th>
-                        <th style="text-align: center" scope="col">이름</th>
-                        <th style="text-align: center" scope="col">직책</th>
-                    </tr>
-                    </thead>
-                    <div th:each="item : ${getBirthdayInfo}">
-                    <tbody>
-                    <tr>
-                        <td th:text="${item.birth_date}"></td>
-                        <td th:text="${item.name}"></td>
-                        <td th:text="${item.rank}"></td>
-                    </tr>
-                    </tbody>
-                    </div>
-                </table>
+                    <table class="table table-sm" style="text-align: center">
+                        <thead>
+                        <tr>
+                            <th style="text-align: center" scope="col">날짜</th>
+                            <th style="text-align: center" scope="col">이름</th>
+                            <th style="text-align: center" scope="col">직책</th>
+                        </tr>
+                        </thead>
+                        <div th:each="item : ${getBirthdayInfo}">
+                            <tbody>
+                            <tr>
+                                <td th:text="${item.birth_date}"></td>
+                                <td th:text="${item.name}"></td>
+                                <td th:text="${item.rank}"></td>
+                            </tr>
+                            </tbody>
+                        </div>
+                    </table>
                 </div>
                 <ul class="actions" style="justify-content: right">
                     <li><a href="#" class="button">전체보기</a></li>
@@ -150,16 +168,16 @@
              4. 아래 처럼 불러와 사용
              (빨간줄 : 값이 아직 들어있는게 아니기 때문에 빈 값이 들어올 수 있기 때문???)
              -->
-<!--                        <div th:fragment="sideBarFragment(activeMenu)">-->
-<!--                            &lt;!&ndash; sideBar의 내용 &ndash;&gt;-->
+            <!--                        <div th:fragment="sideBarFragment(activeMenu)">-->
+            <!--                            &lt;!&ndash; sideBar의 내용 &ndash;&gt;-->
 
-<!--                            &lt;!&ndash; sidebarData를 사용하여 데이터 표시 &ndash;&gt;-->
-<!--                            <div th:each="item : ${sidebarData}">-->
-<!--                                <span th:text="${item.ip}"></span>-->
-<!--                                <span th:text="${item.device}"></span>-->
-<!--                                <span th:text="${item.created_at}"></span>-->
-<!--                            </div>-->
-<!--                        </div>-->
+            <!--                            &lt;!&ndash; sidebarData를 사용하여 데이터 표시 &ndash;&gt;-->
+            <!--                            <div th:each="item : ${sidebarData}">-->
+            <!--                                <span th:text="${item.ip}"></span>-->
+            <!--                                <span th:text="${item.device}"></span>-->
+            <!--                                <span th:text="${item.created_at}"></span>-->
+            <!--                            </div>-->
+            <!--                        </div>-->
 
             <!-- Table -->
             <div th:fragment="sideBarFragment(activeMenu)">
@@ -178,7 +196,8 @@
                         <div th:each="item : ${sidebarData}">
                             <tbody style="text-align: center">
                             <tr>
-                                <td th:text="${#strings.substring(item.created_at,0, 11)}"></td> <!-- 시간 자르고 날짜만 보여주기 -->
+                                <td th:text="${#strings.substring(item.created_at,0, 11)}"></td>
+                                <!-- 시간 자르고 날짜만 보여주기 -->
                                 <td th:text="${item.ip}"></td>
                                 <td th:text="${item.device}"></td>
                             </tr>
@@ -196,8 +215,11 @@
                 </header>
                 <p>※급한 경우 외에는 동아리 카톡방 혹은 메일로 연락 바랍니다.</p>
                 <ul class="contact">
-                    <li class="icon solid fa-envelope"><a href="#" th:text="${emergencyInfo.email}">information@naver.com</a></li>
-                    <li class="icon solid fa-phone" th:text="${#strings.substring(emergencyInfo.phone, 1, 13)}">010-1234-3333</li>
+                    <li class="icon solid fa-envelope"><a href="#" th:text="${emergencyInfo.email}">information@naver.com</a>
+                    </li>
+                    <li class="icon solid fa-phone" th:text="${#strings.substring(emergencyInfo.phone, 1, 13)}">
+                        010-1234-3333
+                    </li>
                     <li class="icon solid fa-home" th:text="${emergencyInfo.location}">배재대학교 정보과학관 C401<br/>
                 </ul>
             </section>
