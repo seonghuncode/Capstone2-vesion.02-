@@ -18,17 +18,39 @@
             <!--            </section>-->
 
             <!-- Menu바  ---------------------------------------------------------------------------------------------------------------->
-            <nav id="menu">
+            <nav id="menu" style="border-bottom: solid 0px;"> <!-- border-bottom: solid 0px; : 메뉴 추가하는 플러스 아이콘 아래 밑줄 생기는 것 제거 -->
                 <header class="major" style="margin-bottom: 30px">
                     <h2 style="display: inline">Menu</h2>
                     <h2 style="border-bottom: solid 1px white; float: right"><a href="logout">로그아웃</a></h2>
                 </header>
+                <br>
                 <ul>
-                    <li><a href="mainPage">메인</a></li>
-                    <li><a href="notification">공지</a></li>
-                    <li><a href="rules">규칙</a></li>
-                    <li><a href="organizationalChart">조직도</a></li>
-                    <li><a href="moneyHistory">회비내역</a></li>
+                    <li style="display: inline">
+                        <a href="mainPage" style="display: inline">메인</a>
+                        <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
+                        <a href="#" style="display: inline; float: right"><i class="bi bi-trash">&nbsp;&nbsp;</i></a>
+                    </li>
+                    <li>
+                        <a href="notification" style="display: inline">공지</a>
+                        <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
+                        <a href="#" style="display: inline; float: right"><i class="bi bi-trash">&nbsp;&nbsp;</i></a>
+                    </li>
+                    <li>
+                        <a href="rules" style="display: inline">규칙</a>
+                        <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
+                        <a href="#" style="display: inline; float: right"><i class="bi bi-trash">&nbsp;&nbsp;</i></a>
+                    </li>
+                    <li>
+                        <a href="organizationalChart" style="display: inline">조직도</a>
+                        <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
+                        <a href="#" style="display: inline; float: right"><i class="bi bi-trash">&nbsp;&nbsp;</i></a>
+                    </li>
+                    <li>
+                        <a href="moneyHistory" style="display: inline">회비내역</a>
+                        <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
+                        <a href="#" style="display: inline; float: right"><i class="bi bi-trash">&nbsp;&nbsp;</i></a>
+                    </li>
+                    <li><a href="#" style="float: right"><i class="bi bi-plus-circle fs-2" ></i></a></li> <!-- 추가 번튼 -->
                     <!--										<li>-->   <!-- 메뉴텝에 버튼 추가시 필요 -->
                     <!--											<span class="opener">Submenu</span>-->
                     <!--											<ul>-->
@@ -128,16 +150,16 @@
              4. 아래 처럼 불러와 사용
              (빨간줄 : 값이 아직 들어있는게 아니기 때문에 빈 값이 들어올 수 있기 때문???)
              -->
-            <!--            <div th:fragment="sideBarFragment(activeMenu)">-->
-            <!--                &lt;!&ndash; sideBar의 내용 &ndash;&gt;-->
+<!--                        <div th:fragment="sideBarFragment(activeMenu)">-->
+<!--                            &lt;!&ndash; sideBar의 내용 &ndash;&gt;-->
 
-            <!--                &lt;!&ndash; sidebarData를 사용하여 데이터 표시 &ndash;&gt;-->
-            <!--                <div th:each="item : ${sidebarData}">-->
-            <!--                    <span th:text="${item.ip}"></span>-->
-            <!--                    <span th:text="${item.device}"></span>-->
-            <!--                    <span th:text="${item.created_at}"></span>-->
-            <!--                </div>-->
-            <!--            </div>-->
+<!--                            &lt;!&ndash; sidebarData를 사용하여 데이터 표시 &ndash;&gt;-->
+<!--                            <div th:each="item : ${sidebarData}">-->
+<!--                                <span th:text="${item.ip}"></span>-->
+<!--                                <span th:text="${item.device}"></span>-->
+<!--                                <span th:text="${item.created_at}"></span>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
             <!-- Table -->
             <div th:fragment="sideBarFragment(activeMenu)">
@@ -174,9 +196,9 @@
                 </header>
                 <p>※급한 경우 외에는 동아리 카톡방 혹은 메일로 연락 바랍니다.</p>
                 <ul class="contact">
-                    <li class="icon solid fa-envelope"><a href="#">information@naver.com</a></li>
-                    <li class="icon solid fa-phone">010-1234-3333</li>
-                    <li class="icon solid fa-home">배재대학교 정보과학관 C401<br/>
+                    <li class="icon solid fa-envelope"><a href="#" th:text="${emergencyInfo.email}">information@naver.com</a></li>
+                    <li class="icon solid fa-phone" th:text="${#strings.substring(emergencyInfo.phone, 1, 13)}">010-1234-3333</li>
+                    <li class="icon solid fa-home" th:text="${emergencyInfo.location}">배재대학교 정보과학관 C401<br/>
                 </ul>
             </section>
 

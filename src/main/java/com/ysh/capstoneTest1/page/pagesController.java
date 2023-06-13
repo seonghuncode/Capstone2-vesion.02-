@@ -42,6 +42,12 @@ public class pagesController {
         List<Map<String, Object>> data2 = sideBarService.getBirthdayInfo(request) ;
         model.addAttribute("getBirthdayInfo", data2);
 
+        //비상 연락망을 가지고 오는 부분---------------------------------------------------
+        Map<String, Object> emergencyInfo = sideBarService.emergencyInfo(request);
+//        System.out.println("/////////////////////////");
+//        System.out.println(emergencyInfo);
+        model.addAttribute("emergencyInfo", emergencyInfo);
+
 
         //토큰이 만료 되었다면 현재 페이지 재로딩 하는 부분
             Map<String, Object> resultMap = data.get(0); // 첫 번째 맵을 가져옴
@@ -74,6 +80,12 @@ public class pagesController {
         //생일 정보를 가지고 오는 부분-------------------------------------------------------
         List<Map<String, Object>> data2 = sideBarService.getBirthdayInfo(request) ;
         model.addAttribute("getBirthdayInfo", data2);
+
+        //비상 연락망을 가지고 오는 부분---------------------------------------------------
+        Map<String, Object> emergencyInfo = sideBarService.emergencyInfo(request);
+//        System.out.println("/////////////////////////");
+//        System.out.println(emergencyInfo);
+        model.addAttribute("emergencyInfo", emergencyInfo);
 
 
         //토큰이 만료 되었다면 현재 페이지 재로딩 하는 부분
@@ -119,6 +131,12 @@ public class pagesController {
         List<Map<String, Object>> data2 = sideBarService.getBirthdayInfo(request) ;
         model.addAttribute("getBirthdayInfo", data2);
 
+        //비상 연락망을 가지고 오는 부분---------------------------------------------------
+        Map<String, Object> emergencyInfo = sideBarService.emergencyInfo(request);
+//        System.out.println("/////////////////////////");
+//        System.out.println(emergencyInfo);
+        model.addAttribute("emergencyInfo", emergencyInfo);
+
 
         //토큰이 만료 되었다면 현재 페이지 재로딩 하는 부분
         Map<String, Object> resultMap = data.get(0); // 첫 번째 맵을 가져옴
@@ -157,6 +175,12 @@ public class pagesController {
         //생일 정보를 가지고 오는 부분-------------------------------------------------------
         List<Map<String, Object>> data2 = sideBarService.getBirthdayInfo(request) ;
         model.addAttribute("getBirthdayInfo", data2);
+
+        //비상 연락망을 가지고 오는 부분---------------------------------------------------
+        Map<String, Object> emergencyInfo = sideBarService.emergencyInfo(request);
+//        System.out.println("/////////////////////////");
+//        System.out.println(emergencyInfo);
+        model.addAttribute("emergencyInfo", emergencyInfo);
 
 
         //토큰이 만료 되었다면 현재 페이지 재로딩 하는 부분
@@ -202,6 +226,12 @@ public class pagesController {
         //생일 정보를 가지고 오는 부분-------------------------------------------------------
         List<Map<String, Object>> data2 = sideBarService.getBirthdayInfo(request) ;
         model.addAttribute("getBirthdayInfo", data2);
+
+        //비상 연락망을 가지고 오는 부분---------------------------------------------------
+        Map<String, Object> emergencyInfo = sideBarService.emergencyInfo(request);
+//        System.out.println("/////////////////////////");
+//        System.out.println(emergencyInfo);
+        model.addAttribute("emergencyInfo", emergencyInfo);
 
 
         //토큰이 만료 되었다면 현재 페이지 재로딩 하는 부분

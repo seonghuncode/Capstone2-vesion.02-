@@ -18,7 +18,7 @@
 
     <!-- Main -->
     <div id="main">
-        <div class="메인">
+        <div class="inner">
 
             <!-- Header(메인 상단 부분) ----------------------------------------------------------------------------------------------->
             <header th:replace="fragment/header :: headerFragment"></header>
@@ -153,6 +153,11 @@
 
         <!-- 로그인 성공하고 메인 페이지로 넘기면서 생일 데이터를 사이드 바로 넘겨주는 부분 -->
         <div th:with="sidebarData=${getBirthdayInfo}">
+            <!-- sidebarData를 sideBar.html로 전달 -->
+        </div>
+
+        <!-- 로그인 성공하고 메인 페이지로 넘기면서 긴급 연락망에 대한 데이터를 사이드 바로 넘겨주는 부분 -->
+        <div th:with="sidebarData=${emergencyInfo}">
             <!-- sidebarData를 sideBar.html로 전달 -->
         </div>
     </header>
