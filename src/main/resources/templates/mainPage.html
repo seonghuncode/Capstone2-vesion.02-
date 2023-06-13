@@ -161,8 +161,13 @@
             <!-- sidebarData를 sideBar.html로 전달 -->
         </div>
 
-        <!-- 로그인 성공하고 메인 페이지로 넘기면서 상요자 권한에 대한 데이터를 사이드 바로 넘겨주는 부분 -->
+        <!-- 로그인 성공하고 메인 페이지로 넘기면서 사요자 권한에 대한 데이터를 사이드 바로 넘겨주는 부분 -->
         <div th:with="sidebarData=${authority}">
+            <!-- sidebarData를 sideBar.html로 전달 -->
+        </div>
+
+        <!-- 로그인 성공하고 메인 페이지로 넘기면서 해당 동아리에 존재하는 메뉴리스트들에 대한 데이터를 사이드 바로 넘겨주는 부분 -->
+        <div th:with="sidebarData=${menuList}">
             <!-- sidebarData를 sideBar.html로 전달 -->
         </div>
     </header>

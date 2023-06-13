@@ -26,45 +26,95 @@
                 </header>
                 <br>
                 <ul>
-                    <li style="display: inline">
-                        <a href="mainPage" style="display: inline">메인</a>
+                    <!--                    <div th:each="menu : ${menuList}" style="display: inline">-->
+                    <!--                        <li th:if="${menu.title == '메인'}"  style="display: inline">-->
+                    <!--                            <a href="mainPage" style="display: inline">메인</a>-->
+                    <!--                            <div th:if="${authority == '관리자'}" style="display: inline;">-->
+                    <!--                                <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>-->
+                    <!--                                <a href="#" style="display: inline; float: right"><i-->
+                    <!--                                        class="bi bi-trash">&nbsp;&nbsp;</i></a>-->
+                    <!--                            </div>-->
+                    <!--                        </li>-->
+                    <!--                        <li th:if="${menu.title == '공지'}">-->
+                    <!--                            <a href="notification" style="display: inline">공지</a>-->
+                    <!--                            <div th:if="${authority == '관리자'}" style="display: inline;">-->
+                    <!--                                <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>-->
+                    <!--                                <a href="#" style="display: inline; float: right"><i class="bi bi-trash"> &nbsp;</i></a>-->
+                    <!--                            </div>-->
+                    <!--                        </li>-->
+                    <!--                        <li th:if="${menu.title == '규칙'}">-->
+                    <!--                            <a href="rules" style="display: inline">규칙</a>-->
+                    <!--                            <div th:if="${authority == '관리자'}" style="display: inline;">-->
+                    <!--                                <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>-->
+                    <!--                                <a href="#" style="display: inline; float: right"><i-->
+                    <!--                                        class="bi bi-trash">&nbsp;&nbsp;</i></a>-->
+                    <!--                            </div>-->
+                    <!--                        </li>-->
+                    <!--                        <li th:if="${menu.title == '조직도'}">-->
+                    <!--                            <a href="organizationalChart" style="display: inline">조직도</a>-->
+                    <!--                            <div th:if="${authority == '관리자'}" style="display: inline;">-->
+                    <!--                                <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>-->
+                    <!--                                <a href="#" style="display: inline; float: right"><i-->
+                    <!--                                        class="bi bi-trash">&nbsp;&nbsp;</i></a>-->
+                    <!--                            </div>-->
+                    <!--                        </li>-->
+                    <!--                        <li th:if="${menu.title == '회비내역'}">-->
+                    <!--                            <a href="moneyHistory" style="display: inline">회비내역</a>-->
+                    <!--                            <div th:if="${authority == '관리자'}" style="display: inline;">-->
+                    <!--                                <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>-->
+                    <!--                                <a href="#" style="display: inline; float: right"><i-->
+                    <!--                                        class="bi bi-trash">&nbsp;&nbsp;</i></a>-->
+                    <!--                            </div>-->
+                    <!--                        </li>-->
+                    <!--                    </div>-->
+
+
+                    <li th:each="menu : ${menuList}">
+                              <span th:if="${menu.title == '메인'}">
+                            <a href="mainPage" style="display: inline">메인</a>
+                            <div th:if="${authority == '관리자'}" style="display: inline;">
+                                <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
+                                <a href="#" style="display: inline; float: right"><i
+                                        class="bi bi-trash">&nbsp;&nbsp;</i></a>
+                            </div>
+                              </span>
+                        <span th:if="${menu.title == '공지'}">
+                             <a href="notification" style="display: inline">공지</a>
+                        <div th:if="${authority == '관리자'}" style="display: inline;">
+                            <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
+                            <a href="#" style="display: inline; float: right"><i class="bi bi-trash"> &nbsp;</i></a>
+                        </div>
+                        </span>
+                        <span th:if="${menu.title == '규칙'}">
+                              <a href="rules" style="display: inline">규칙</a>
                         <div th:if="${authority == '관리자'}" style="display: inline;">
                             <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
                             <a href="#" style="display: inline; float: right"><i
                                     class="bi bi-trash">&nbsp;&nbsp;</i></a>
                         </div>
-                    </li>
-                    <li>
-                        <a href="notification" style="display: inline">공지</a>
-                        <div th:if="${authority == '관리자'}" style="display: inline;">
-                            <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
-                            <a href="#" style="display: inline; float: right"><i class="bi bi-trash">  &nbsp;</i></a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="rules" style="display: inline">규칙</a>
+                        </span>
+                        <span th:if="${menu.title == '조직도'}">
+                               <a href="organizationalChart" style="display: inline">조직도</a>
                         <div th:if="${authority == '관리자'}" style="display: inline;">
                             <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
                             <a href="#" style="display: inline; float: right"><i
                                     class="bi bi-trash">&nbsp;&nbsp;</i></a>
                         </div>
-                    </li>
-                    <li>
-                        <a href="organizationalChart" style="display: inline">조직도</a>
+                        </span>
+                        <span th:if="${menu.title == '회비내역'}">
+                             <a href="moneyHistory" style="display: inline">회비내역</a>
                         <div th:if="${authority == '관리자'}" style="display: inline;">
                             <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
                             <a href="#" style="display: inline; float: right"><i
                                     class="bi bi-trash">&nbsp;&nbsp;</i></a>
                         </div>
+                        </span>
                     </li>
-                    <li>
-                        <a href="moneyHistory" style="display: inline">회비내역</a>
-                        <div th:if="${authority == '관리자'}" style="display: inline;">
-                            <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
-                            <a href="#" style="display: inline; float: right"><i
-                                    class="bi bi-trash">&nbsp;&nbsp;</i></a>
-                        </div>
-                    </li>
+
+
+
+
+
                     <li th:if="${authority == '관리자'}"><a href="#" style="float: right"><i
                             class="bi bi-plus-circle fs-2"></i></a></li> <!-- 추가 번튼 -->
                     <!--										<li>-->   <!-- 메뉴텝에 버튼 추가시 필요 -->

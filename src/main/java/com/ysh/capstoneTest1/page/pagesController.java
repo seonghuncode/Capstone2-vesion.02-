@@ -55,6 +55,11 @@ public class pagesController {
         model.addAttribute("authority", authority);
 //        System.out.println(authority);
 
+        //메뉴 전체 리스트를 가지고 오는 부분-------------------------------------------------------
+        List<Map<String, Object>> menuList = sideBarService.getMenuList(request) ;
+        model.addAttribute("menuList", menuList);
+//        System.out.println(menuList);
+
 
         //토큰이 만료 되었다면 현재 페이지 재로딩 하는 부분
             Map<String, Object> resultMap = data.get(0); // 첫 번째 맵을 가져옴
@@ -98,6 +103,10 @@ public class pagesController {
         HttpSession session = request.getSession();
         String authority = (String) session.getAttribute("authority");
         model.addAttribute("authority", authority);
+
+        //메뉴 전체 리스트를 가지고 오는 부분-------------------------------------------------------
+        List<Map<String, Object>> menuList = sideBarService.getMenuList(request) ;
+        model.addAttribute("menuList", menuList);
 
 
         //토큰이 만료 되었다면 현재 페이지 재로딩 하는 부분
@@ -154,6 +163,10 @@ public class pagesController {
         String authority = (String) session.getAttribute("authority");
         model.addAttribute("authority", authority);
 
+        //메뉴 전체 리스트를 가지고 오는 부분-------------------------------------------------------
+        List<Map<String, Object>> menuList = sideBarService.getMenuList(request) ;
+        model.addAttribute("menuList", menuList);
+
 
         //토큰이 만료 되었다면 현재 페이지 재로딩 하는 부분
         Map<String, Object> resultMap = data.get(0); // 첫 번째 맵을 가져옴
@@ -203,6 +216,10 @@ public class pagesController {
         HttpSession session = request.getSession();
         String authority = (String) session.getAttribute("authority");
         model.addAttribute("authority", authority);
+
+        //메뉴 전체 리스트를 가지고 오는 부분-------------------------------------------------------
+        List<Map<String, Object>> menuList = sideBarService.getMenuList(request) ;
+        model.addAttribute("menuList", menuList);
 
 
         //토큰이 만료 되었다면 현재 페이지 재로딩 하는 부분
@@ -259,6 +276,10 @@ public class pagesController {
         HttpSession session = request.getSession();
         String authority = (String) session.getAttribute("authority");
         model.addAttribute("authority", authority);
+
+        //메뉴 전체 리스트를 가지고 오는 부분-------------------------------------------------------
+        List<Map<String, Object>> menuList = sideBarService.getMenuList(request) ;
+        model.addAttribute("menuList", menuList);
 
 
         //토큰이 만료 되었다면 현재 페이지 재로딩 하는 부분
