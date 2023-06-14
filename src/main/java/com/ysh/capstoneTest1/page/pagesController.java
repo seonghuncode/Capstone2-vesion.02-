@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -299,6 +301,20 @@ public class pagesController {
 
 
         return "moneyHistory";
+    }
+
+
+    //사용자가 사이드바의 메뉴 생성 아이콘을 클릭했을 경우 실행되는 로직
+    @RequestMapping(value = "/makeNewMenu", produces = "application/json; charset=utf8", method = {RequestMethod.GET})
+    @ResponseBody
+    public String makeNewMenu(HttpServletRequest request, @RequestParam String newMenu) throws Exception{
+
+        System.out.println(newMenu);
+
+        Map<String, Object> makeNewMenu = sideBarService.makeNewMenu(request, newMenu);
+        System.out.println(makeNewMenu);
+
+        return "";
     }
 
 

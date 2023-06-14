@@ -111,11 +111,7 @@
                         </span>
                     </li>
 
-
-
-
-
-                    <li th:if="${authority == '관리자'}"><a href="#" style="float: right"><i
+                    <li th:if="${authority == '관리자'}" ><a href="#" style="float: right" id="makeNewMenu"><i
                             class="bi bi-plus-circle fs-2"></i></a></li> <!-- 추가 번튼 -->
                     <!--										<li>-->   <!-- 메뉴텝에 버튼 추가시 필요 -->
                     <!--											<span class="opener">Submenu</span>-->
@@ -283,4 +279,15 @@
         </div>
     </div>
 
+    <!-- 사이드바에서 필요한 자바스크립트 -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" th:inline="javascript">
+        // var clubCode = [[${dateCnt}]];
+        //console.log(username);
+    </script>
+    <script src="/js/sideBarAjax.js"></script>
+
 </header>
+
+
+
