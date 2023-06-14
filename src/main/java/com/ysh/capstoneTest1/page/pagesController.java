@@ -304,17 +304,24 @@ public class pagesController {
     }
 
 
+    //사용자가 메뉴 추가 아이콘을 클릭할 경우 새로운 메뉴이름과 타입을 정하는 페이지
+    @RequestMapping("/doMakeNewMenu")
+    public String doMakeNewMenu(){
+        return "doMakeNewMenu";
+    }
+
+
     //사용자가 사이드바의 메뉴 생성 아이콘을 클릭했을 경우 실행되는 로직
     @RequestMapping(value = "/makeNewMenu", produces = "application/json; charset=utf8", method = {RequestMethod.GET})
     @ResponseBody
-    public String makeNewMenu(HttpServletRequest request, @RequestParam String newMenu) throws Exception{
+    public Map<String, Object> makeNewMenu(HttpServletRequest request, @RequestParam String title, @RequestParam String type) throws Exception{
 
-        System.out.println(newMenu);
+        System.out.println(title + type);
 
-        Map<String, Object> makeNewMenu = sideBarService.makeNewMenu(request, newMenu);
+        Map<String, Object> makeNewMenu = sideBarService.makeNewMenu(request, title, type);
         System.out.println(makeNewMenu);
 
-        return "";
+        return makeNewMenu;
     }
 
 

@@ -355,8 +355,8 @@ public class SideBarService {
 
 
 
-    //사이드바의 메뉴탭을 축가하는 부분-----------------------------------------------------------------------------------------------------------
-    public Map<String, Object> makeNewMenu(HttpServletRequest request, String newMenu) throws Exception {
+    //사이드바의 메뉴탭을 추가하는 부분-----------------------------------------------------------------------------------------------------------
+    public Map<String, Object> makeNewMenu(HttpServletRequest request, String title, String type) throws Exception {
 
         HttpSession session = request.getSession();
 
@@ -383,8 +383,8 @@ public class SideBarService {
 
             // 요청 바디 설정
             MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
-            requestBody.add("title", newMenu);
-            requestBody.add("type", "image_board");
+            requestBody.add("title", title);
+            requestBody.add("type", type);
 
             System.out.println(url.toString());
 

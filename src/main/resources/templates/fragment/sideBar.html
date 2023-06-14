@@ -111,7 +111,8 @@
                         </span>
                     </li>
 
-                    <li th:if="${authority == '관리자'}" ><a href="#" style="float: right" id="makeNewMenu"><i
+                    <!-- 메뉴 새로만들기 클릭시 작은 새 페이지 띄우기 -->
+                    <li th:if="${authority == '관리자'}" ><a href="javascript:void(window.open('/doMakeNewMenu', '새로운 메뉴탭 생성','width=640, height=400'))" style="float: right" ><i
                             class="bi bi-plus-circle fs-2"></i></a></li> <!-- 추가 번튼 -->
                     <!--										<li>-->   <!-- 메뉴텝에 버튼 추가시 필요 -->
                     <!--											<span class="opener">Submenu</span>-->

@@ -1,23 +1,34 @@
 
+
+
+
 $("#makeNewMenu").click(function () {
 
-    const newMenu = prompt('추가할 메뉴 이름을 입력해 주세요.');
-    console.log(newMenu);
 
+    var title= $('#inputName').val();
+    var type = $('input[name=chk_info]:checked').val();
+
+    console.log(title);
+    console.log(type);
 
     $.ajax({
         url: "/makeNewMenu",
-        data: {"newMenu" : newMenu},  //data: info, JSON.stringify(info)
+        data: {"title": title, "type" : type},  //data: info, JSON.stringify(info)
         method: "get",
         dataType: "json",   //dataType : "html",
         contentType: "application/json; charset=utf-8",
         success: function (res) {
             // alert("success");
             // console.log("controller에서 받은 데이터 ==>  ")
-            // console.log(res);
+            console.log(res);
 
-            //전달 받은 학과 정보를 통해 select box를 만드는 함수
-            showDepartmentCode(res);
+            if(res.result == "success"){
+                alert("새로운 메뉴를 정상적으로 추가 했습니다.")
+            }else if(res.result == "fail"){
+                alert("새로운 메뉴를 추가를 실패 했습니다. 관리자 에게 문의 하세요.")
+            }
+
+
 
         },
         error: function () {
