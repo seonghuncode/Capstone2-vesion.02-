@@ -1,15 +1,13 @@
 
-
-
-
+//사용자가 사이드바의 메뉴 생성 아이콘을 클릭할 경우 생성 페이지 팝업이 뜨고 추가하기 버튼을 클릭할때 실행 되는 부분
 $("#makeNewMenu").click(function () {
 
 
     var title= $('#inputName').val();
     var type = $('input[name=chk_info]:checked').val();
 
-    console.log(title);
-    console.log(type);
+    // console.log(title);
+    // console.log(type);
 
     $.ajax({
         url: "/makeNewMenu",

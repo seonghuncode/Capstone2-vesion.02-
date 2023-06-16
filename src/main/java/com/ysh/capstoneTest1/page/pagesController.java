@@ -316,10 +316,10 @@ public class pagesController {
     @ResponseBody
     public Map<String, Object> makeNewMenu(HttpServletRequest request, @RequestParam String title, @RequestParam String type) throws Exception{
 
-        System.out.println(title + type);
+        //System.out.println(title + type);
 
         Map<String, Object> makeNewMenu = sideBarService.makeNewMenu(request, title, type);
-        System.out.println(makeNewMenu);
+        //System.out.println(makeNewMenu);
 
         return makeNewMenu;
     }
