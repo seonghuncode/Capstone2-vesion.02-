@@ -18,7 +18,8 @@
             <!--            </section>-->
 
             <!-- Menu바  ---------------------------------------------------------------------------------------------------------------->
-            <nav id="menu" style="border-bottom: solid 0px;">
+<!--            <nav id="menu" style="border-bottom: solid 0px;">-->
+            <nav id="menu">
                 <!-- border-bottom: solid 0px; : 메뉴 추가하는 플러스 아이콘 아래 밑줄 생기는 것 제거 -->
                 <header class="major" style="margin-bottom: 30px">
                     <h2 style="display: inline">Menu</h2>
@@ -82,7 +83,7 @@
                              <a href="notification" style="display: inline">공지</a>
                         <div th:if="${authority == '관리자'}" style="display: inline;">
                              <a href="javascript:void(0)" th:onclick="'modifyMenu(' + ${menu.id} + ')'" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
-                            <a href="javascript:void(0)" th:onclick="'deleteMenu(' + ${menu.id} + ')'" style="display: inline; float: right"> &nbsp;</i></a>
+                            <a href="javascript:void(0)" th:onclick="'deleteMenu(' + ${menu.id} + ')'" style="display: inline; float: right"><i class="bi bi-trash">&nbsp;&nbsp;</i></a>
                         </div>
                         </span>
                         <span th:if="${menu.title == '규칙'}">
@@ -123,10 +124,14 @@
                     </li>
 
                     <!-- 메뉴 새로만들기 클릭시 작은 새 페이지 띄우기 -->
-                    <li th:if="${authority == '관리자'}"><a
+<!--                    <br>-->
+                    <li th:if="${authority == '관리자'}" id="removeUnderline"><a
                             href="javascript:void(window.open('/doMakeNewMenu', '새로운 메뉴탭 생성','width=640, height=400'))"
                             style="float: right"><i
                             class="bi bi-plus-circle fs-2"></i></a></li> <!-- 추가 번튼 -->
+                    <br>
+                    <br>
+                    <br>
                     <!--										<li>-->   <!-- 메뉴텝에 버튼 추가시 필요 -->
                     <!--											<span class="opener">Submenu</span>-->
                     <!--											<ul>-->

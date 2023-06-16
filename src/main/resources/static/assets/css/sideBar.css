@@ -2,8 +2,10 @@
 현재 메뉴바 버튼들을 서버에서 가지고와서 존재할 경우 반복문에서 if문에 걸릴 경우 에만 화면에 보여지는 데 없는 경우 반복문이 돌게 될경우 기본 템플릿 css
 가 적용 되어 있어서 밑줄에 대한 스타일을 없애주는 역할
  */
-#menu > ul > li{
-     border-top: solid 0px rgba(0,0,0,0);
-     margin: 0 0 0 0;
-     padding: 0 0 0 0;
-}
+
+/*#menu > ul > li{*/
+/*     border-top: solid 0px rgba(0,0,0,0);*/
+/*     margin: 0 0 0 0;*/
+/*     padding: 0 0 0 0;*/
+/*}*/
+
