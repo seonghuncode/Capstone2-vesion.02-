@@ -73,7 +73,7 @@
                               <span th:if="${menu.title == '메인'}">
                             <a href="mainPage" style="display: inline">메인</a>
                             <div th:if="${authority == '관리자'}" style="display: inline;">
-                                <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
+                                     <a href="javascript:void(0)" th:onclick="'modifyMenu(' + ${menu.id} + ')'" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
                                 <a href="#" style="display: inline; float: right"><i
                                         class="bi bi-trash">&nbsp;&nbsp;</i></a>
                             </div>
@@ -81,14 +81,14 @@
                         <span th:if="${menu.title == '공지'}">
                              <a href="notification" style="display: inline">공지</a>
                         <div th:if="${authority == '관리자'}" style="display: inline;">
-                            <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
+                             <a href="javascript:void(0)" th:onclick="'modifyMenu(' + ${menu.id} + ')'" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
                             <a href="#" style="display: inline; float: right"><i class="bi bi-trash"> &nbsp;</i></a>
                         </div>
                         </span>
                         <span th:if="${menu.title == '규칙'}">
                               <a href="rules" style="display: inline">규칙</a>
                         <div th:if="${authority == '관리자'}" style="display: inline;">
-                            <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
+                             <a href="javascript:void(0)" th:onclick="'modifyMenu(' + ${menu.id} + ')'" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
                             <a href="#" style="display: inline; float: right"><i
                                     class="bi bi-trash">&nbsp;&nbsp;</i></a>
                         </div>
@@ -96,7 +96,7 @@
                         <span th:if="${menu.title == '조직도'}">
                                <a href="organizationalChart" style="display: inline">조직도</a>
                         <div th:if="${authority == '관리자'}" style="display: inline;">
-                            <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
+                             <a href="javascript:void(0)" th:onclick="'modifyMenu(' + ${menu.id} + ')'" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
                             <a href="#" style="display: inline; float: right"><i
                                     class="bi bi-trash">&nbsp;&nbsp;</i></a>
                         </div>
@@ -104,7 +104,18 @@
                         <span th:if="${menu.title == '회비내역'}">
                              <a href="moneyHistory" style="display: inline">회비내역</a>
                         <div th:if="${authority == '관리자'}" style="display: inline;">
-                            <a href="#" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
+                            <a href="javascript:void(0)" th:onclick="'modifyMenu(' + ${menu.id} + ')'" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
+                            <a href="#" style="display: inline; float: right"><i
+                                    class="bi bi-trash">&nbsp;&nbsp;</i></a>
+                        </div>
+                        </span>
+                        <!--
+                        기본 default로 존재하지 않고 관리자가 추가적으로 만든 메뉴 이름에 대해서 보여주는 부분
+                        (메뉴 이름이 만들어지고 페이지, 이동 주소가 따로 생성 되지 않는다다)                        -->
+                        <span th:unless="${menu.title == '메인' or menu.title == '공지' or menu.title == '규칙' or menu.title == '조직도' or menu.title == '회비내역'}">
+                             <a href="# " style="display: inline" th:text="${menu.title}"></a>
+                        <div th:if="${authority == '관리자'}" style="display: inline;">
+                           <a href="javascript:void(0)" th:onclick="'modifyMenu(' + ${menu.id} + ')'" style="display: inline; float: right"><i class="bi bi-pencil-fill"></i></a>
                             <a href="#" style="display: inline; float: right"><i
                                     class="bi bi-trash">&nbsp;&nbsp;</i></a>
                         </div>
@@ -112,7 +123,9 @@
                     </li>
 
                     <!-- 메뉴 새로만들기 클릭시 작은 새 페이지 띄우기 -->
-                    <li th:if="${authority == '관리자'}" ><a href="javascript:void(window.open('/doMakeNewMenu', '새로운 메뉴탭 생성','width=640, height=400'))" style="float: right" ><i
+                    <li th:if="${authority == '관리자'}"><a
+                            href="javascript:void(window.open('/doMakeNewMenu', '새로운 메뉴탭 생성','width=640, height=400'))"
+                            style="float: right"><i
                             class="bi bi-plus-circle fs-2"></i></a></li> <!-- 추가 번튼 -->
                     <!--										<li>-->   <!-- 메뉴텝에 버튼 추가시 필요 -->
                     <!--											<span class="opener">Submenu</span>-->

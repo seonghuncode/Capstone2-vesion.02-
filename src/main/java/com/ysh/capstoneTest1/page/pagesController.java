@@ -325,6 +325,42 @@ public class pagesController {
     }
 
 
+    //사용자가 메뉴 수정 아이콘을 클릭할 경우 새로운 메뉴이름과 타입을 정하는 페이지
+    @RequestMapping("/doModifyMenu")
+    public String doModifyMenu(int menuId, Model model) {
+
+        model.addAttribute("menuId", menuId);
+
+        System.out.println(menuId);
+
+        return "doModifyMenu";
+    }
+
+
+    //사용자가 메뉴 이름 수정 페이지 에서 수정 하기 버튼을 클릭했을 경우 실행 되는 로직
+    @RequestMapping(value = "/modifyMenu", produces = "application/json; charset=utf8", method = {RequestMethod.GET})
+    @ResponseBody
+    public Map<String, Object> modifyMenu(HttpServletRequest request, @RequestParam(value = "title", defaultValue = "0") String title, @RequestParam(value = "type", defaultValue = "0") String type, @RequestParam("menuId") String menuId) throws Exception{
+
+        //System.out.println(title + type);
+//        System.out.println(title);
+//        System.out.println(type);
+//        System.out.println(menuId);
+
+//            int menu_id = Integer.parseInt(menuId);
+//            System.out.println("menu_id : " + menu_id);
+
+        int menu_id = Integer.parseInt(menuId);
+//        System.out.println("menu_id : " + menu_id);
+
+        Map<String, Object> modifyMenu = sideBarService.modifyMenu(request, title, type, menu_id);
+//        System.out.println("Controller>>>>>>>>>>>>>>");
+//        System.out.println(modifyMenu);
+
+        return modifyMenu;
+    }
+
+
 //    //조직도에 대한 정보를 받아오는 부분
 //    @RequestMapping("/test/getOrganizationChart")
 //    @ResponseBody
