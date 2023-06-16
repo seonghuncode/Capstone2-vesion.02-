@@ -361,6 +361,34 @@ public class pagesController {
     }
 
 
+
+    //사용자가 메뉴 삭제 아이콘을 클릭할 경우 새로운 메뉴이름과 타입을 정하는 페이지
+    @RequestMapping("/deleteMenu")
+    @ResponseBody
+    public String deleteMenu(int menu_id, HttpServletRequest request) {
+        //System.out.println(menu_id);
+        String message = "";
+        //menu_id가 값이 안들어 올 경우
+        try {
+            Map<String, Object> modifyMenu = sideBarService.deleteMenu(request, menu_id);
+            //System.out.println(modifyMenu);
+
+            Object result = modifyMenu.get("result");
+            if (result != null && result.toString().equals("success")) {
+                message = "<script>alert('메뉴명이 정상적으로 삭제 되었습니다.');location.href='mainPage';</script>";
+            } else {
+                message = "<script>alert('메뉴명 삭제하는데 실패 하였습니다.');location.href='mainPage';</script>";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("deleteMenu 예외발생");
+        }
+        return message;
+    }
+
+
+
+
 //    //조직도에 대한 정보를 받아오는 부분
 //    @RequestMapping("/test/getOrganizationChart")
 //    @ResponseBody

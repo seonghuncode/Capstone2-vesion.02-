@@ -43,6 +43,7 @@ function modifyMenu(menuId) {
     window.open(url, '메뉴 수정', 'width=640, height=400');
 
     console.log(url);
+
 }
 
 
@@ -90,11 +91,16 @@ $("#modifyMenu").click(function () {
         });
 
     }
-
-
-
-
+    
 })
+
+
+//사용자가 메뉴 삭제 아이콘을 클릭했을 경우 해당 controller로 파라미터값을 포함하여 전송해주는 부분
+function deleteMenu(menu_id) {
+    var url = '/deleteMenu?menu_id=' + menu_id;
+    // URL 이동
+    window.location.href = url;
+}
 
 
 
