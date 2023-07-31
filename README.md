@@ -1,7 +1,7 @@
-# Capstone2-vesion.02-
+# Capstone2-vesion.02- (4학년 2학기 졸업작품)
 캡스톤2 템플릿 사용
 
-========================
+========================<br>
 캡스톤디자인 팀별 결과보고서
 학년도 학기	2023년도 1학기
 팀 명	웹 서버 구축	결과물 형태	소스코드
@@ -2051,8 +2051,8 @@ return new class () extends Migration {
     }
 };
 
-
-Router
+<br>
+Router<br>
 ![image](https://github.com/seonghuncode/Capstone2-vesion.02-/assets/93322852/60b4d75d-69dd-4be6-b3fd-d58a953d054d)
 
  
@@ -2135,8 +2135,8 @@ class JWTMiddleware
     }
 }
 
-
-Observer
+<br>
+Observer<br>
 ![image](https://github.com/seonghuncode/Capstone2-vesion.02-/assets/93322852/523417f8-2fbc-4f2e-bac2-20410493b3b4)
 
  
