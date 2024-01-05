@@ -391,62 +391,43 @@
 ![image](https://github.com/seonghuncode/Capstone2-vesion.02-/assets/93322852/d3eab8aa-0453-4b97-aa81-2a987eba937f)
 
  테이블 간략 소개 (관계는 구조도 및 테이블 생성 코드 확인)
-clubs  
--	동아리에 대한 정보들이 담긴 테이블
+clubs  ->	동아리에 대한 정보들이 담긴 테이블
 
-club_emergency_contact_network 
--	동아리 비상 연락망 정보가 담긴 테이블
+club_emergency_contact_network ->	동아리 비상 연락망 정보가 담긴 테이블
 
-departments 
--	동아리 내 어떤 학과가 있는지 정보가 담긴 테이블
+departments -> 동아리 내 어떤 학과가 있는지 정보가 담긴 테이블
 
-ranks 
--	동아리 내 권한 정보가 담긴 테이블
+ranks -> 동아리 내 권한 정보가 담긴 테이블
 
-teams 
--	동아리내 팀 정보가 담긴 테이블
+teams -> 동아리내 팀 정보가 담긴 테이블
 
-team_closure 
--	부모, 자식 팀 정보를 관리하는 테이블
+team_closure -> 부모, 자식 팀 정보를 관리하는 테이블
 
-users 
--	동아리 내 사용자 정보가 담긴 테이블
+users -> 동아리 내 사용자 정보가 담긴 테이블
 
-members 
--	동아리 내 사용자의 팀, 랭크, 학과, 팀 리더 여부, 디폴트 팀 여부 등 다양한 정보를 가지고 있는 테이블
+members -> 동아리 내 사용자의 팀, 랭크, 학과, 팀 리더 여부, 디폴트 팀 여부 등 다양한 정보를 가지고 있는 테이블
 
-rank_permissions 
--	랭크 권한을 결정하는 테이블
+rank_permissions -> 랭크 권한을 결정하는 테이블
 
-jwt_token 
--	사용자별 access_token의 값, 유효시간, refresh_token의 값, 유효시간을 가지고있는 테이블
+jwt_token -> 사용자별 access_token의 값, 유효시간, refresh_token의 값, 유효시간을 가지고있는 테이블
 
-user_login 
--	사용자가 로그인할 때마다 ip, 접속 기기 등 다양한 정보를 저장하는 테이블
+user_login -> 사용자가 로그인할 때마다 ip, 접속 기기 등 다양한 정보를 저장하는 테이블
 
-project_consents 
--	동아리 내 프로젝트 동의 여부
+project_consents -> 동아리 내 프로젝트 동의 여부
 
-cctv_consents 
--	동아리 내 cctv 녹화 동의 여부
+cctv_consents -> 동아리 내 cctv 녹화 동의 여부
 
-menus 
--	동아리 홈페이지 내 어떤 메뉴들이 있는지 정보가 담긴 테이블
+menus -> 동아리 홈페이지 내 어떤 메뉴들이 있는지 정보가 담긴 테이블
 
-boards 
--	동아리 홈페이지 내 게시판에 대한 정보가 담긴 테이블
+boards -> 동아리 홈페이지 내 게시판에 대한 정보가 담긴 테이블
 
-bulletins 
--	동아리 홈페이지 내 공지사항에 대한 정보가 담긴 테이블
+bulletins -> 동아리 홈페이지 내 공지사항에 대한 정보가 담긴 테이블
 
-image_boards 
--	동아리 홈페이지 내 이미지 게시판에 대한 정보가 담긴 테이블
+image_boards -> 동아리 홈페이지 내 이미지 게시판에 대한 정보가 담긴 테이블
 
-comments 
--	댓글 테이블
+comments -> 댓글 테이블
 
-common_moneys
--	동아리 내 이미지 보드 별 공유하는 돈을 추가할 수 있고 해당 정보가 담긴 테이블 
+common_moneys -> 동아리 내 이미지 보드 별 공유하는 돈을 추가할 수 있고 해당 정보가 담긴 테이블 
  </pre>
 </div>
 
