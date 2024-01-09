@@ -264,7 +264,7 @@
  <img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white">
  <img src="https://img.shields.io/badge/thymeleaf-4479A1?style=for-the-badge&logo=thymeleaf&logoColor=white">
 </div>
-
+<br>
 <strong>Back-end</strong>
 <div>
  <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
