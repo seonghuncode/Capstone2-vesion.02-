@@ -46,8 +46,8 @@
 <table>
 <thead>
 <tr>
-<th align="center">이름</th>
-<th align="left"><div align="center" dir="auto">개발 내용</div></th>
+<th align="center" width="10%">이름</th>
+<th align="left" width = "90%"><div align="center" dir="auto">개발 내용</div></th>
 </tr>
 </thead>
 <tbody>
