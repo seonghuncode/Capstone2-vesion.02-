@@ -628,6 +628,45 @@
 </table>
 
 
+<br><br><br>
+
+
+<h2 tabindex="-1" dir="auto"><a id="user-content--데모-영상" class="anchor" aria-hidden="true" tabindex="-1" href="#-데모-영상"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a>🎥 데모 영상</h2>
+
+<table>
+<thead>
+<tr>
+<th align="center">동작화면</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><animated-image data-catalyst=""><a target="_blank" rel="noopener noreferrer" href="" data-target="animated-image.originalLink"><img src="https://github.com/seonghuncode/Capstone2-vesion.02-/assets/93322852/8612715e-76fe-4dcc-baaa-b003a35a40f3" alt="" style="max-width: 100%; display: inline-block;" data-target="animated-image.originalImage"></a>
+      <span class="AnimatedImagePlayer" data-target="animated-image.player" hidden="">
+        <a data-target="animated-image.replacedLink" class="AnimatedImagePlayer-images" href="https://github.com/today-real-estate/today-real-estate_front-end/blob/master/readme_assets/main-page.gif" target="_blank">
+</tr>
+<br>
+<tr>
+<td align="center"><animated-image data-catalyst=""><a target="_blank" rel="noopener noreferrer" href="" data-target="animated-image.originalLink"><img src="https://github.com/seonghuncode/Capstone2-vesion.02-/assets/93322852/801ab4fd-0167-44aa-8e06-011388fe501c" alt="" style="max-width: 100%; display: inline-block;" data-target="animated-image.originalImage"></a>
+      <span class="AnimatedImagePlayer" data-target="animated-image.player" hidden="">
+        <a data-target="animated-image.replacedLink" class="AnimatedImagePlayer-images" href="https://github.com/today-real-estate/today-real-estate_front-end/blob/master/readme_assets/main-page.gif" target="_blank">
+</tr>
+<br>
+<tr>
+<td align="center"><animated-image data-catalyst=""><a target="_blank" rel="noopener noreferrer" href="" data-target="animated-image.originalLink"><img src="https://github.com/seonghuncode/Capstone2-vesion.02-/assets/93322852/3c2cd7fd-5348-4d7e-8bd8-ae193bab34dd" alt="" style="max-width: 100%; display: inline-block;" data-target="animated-image.originalImage"></a>
+      <span class="AnimatedImagePlayer" data-target="animated-image.player" hidden="">
+        <a data-target="animated-image.replacedLink" class="AnimatedImagePlayer-images" href="https://github.com/today-real-estate/today-real-estate_front-end/blob/master/readme_assets/main-page.gif" target="_blank">
+</tr>
+<br>
+<tr>
+<td align="center"><animated-image data-catalyst=""><a target="_blank" rel="noopener noreferrer" href="" data-target="animated-image.originalLink"><img src="https://github.com/seonghuncode/Capstone2-vesion.02-/assets/93322852/3159fd9d-332c-426a-b36b-d306d56cc6fc" alt="" style="max-width: 100%; display: inline-block;" data-target="animated-image.originalImage"></a>
+      <span class="AnimatedImagePlayer" data-target="animated-image.player" hidden="">
+        <a data-target="animated-image.replacedLink" class="AnimatedImagePlayer-images" href="https://github.com/today-real-estate/today-real-estate_front-end/blob/master/readme_assets/main-page.gif" target="_blank">
+</tr>
+</tbody>
+</table>
+
+
 
 
 
